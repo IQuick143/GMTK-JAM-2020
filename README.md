@@ -10,7 +10,6 @@ https://github.com/27chandler
 https://github.com/IQuick143
 - victorabda
 (link space)
-- xriva
-(link space)
+- Kevin (xriva)
 - JaumeMontagut (Wadoren)
 https://github.com/JaumeMontagut
