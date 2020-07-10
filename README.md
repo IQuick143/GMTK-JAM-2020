@@ -8,7 +8,9 @@ Totally gonna be a good game
 https://github.com/27chandler
 - IQuick143
 https://github.com/IQuick143
+- victorabda
+(link space)
 - xriva
-
+(link space)
 - JaumeMontagut (Wadoren)
 https://github.com/JaumeMontagut
