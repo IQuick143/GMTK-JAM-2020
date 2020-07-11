@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class TaskEvent : MonoBehaviour
 {
-    [SerializeField] private Collider col;
     [SerializeField] private string tag;
+
+    [SerializeField] private GameObject indicator;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        indicator.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        indicator.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,9 +26,9 @@ public class TaskEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.tag == tag)
+        if ((_other.tag == tag) && (enabled == true))
         {
-            gameObject.SetActive(false);
+            enabled = false;
             Destroy(_other.gameObject);
         }
     }
