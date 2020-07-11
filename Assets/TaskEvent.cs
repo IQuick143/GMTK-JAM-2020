@@ -15,8 +15,6 @@ public class TaskEvent : MonoBehaviour
     }
 
     [SerializeField] private List<IndicatorReference> food_indicators = new List<IndicatorReference>();
-    [SerializeField] private float cooldown = 20.0f;
-    private float current_time = 0.0f;
 
     private List<string> food_orders = new List<string>();
 
