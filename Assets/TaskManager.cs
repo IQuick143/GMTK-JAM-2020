@@ -11,7 +11,6 @@ public class TaskManager : MonoBehaviour
     {
         public float timestamp;
         public TaskEvent task_event;
-        public GameObject indicator;
     };
 
     [SerializeField] private Task current_task;
@@ -54,6 +53,6 @@ public class TaskManager : MonoBehaviour
 
     private void ActivateTask(Task _task)
     {
-        _task.indicator.SetActive(true);
+        _task.task_event.enabled = true;
     }
 }
