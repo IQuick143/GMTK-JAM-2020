@@ -58,25 +58,25 @@ public class RagdollController : MonoBehaviour
 
 		//Move the legs
 		float walking = this.move.MoveVector.magnitude;
-		Vector3 LegTarget = this.transform.position - walking * this.transform.right * legWidth / 2f + this.transform.up * 0.1f;
+		Vector3 LegTarget = this.transform.position - this.transform.right * legWidth / 2f + this.transform.up * 0.1f + walking * this.transform.forward * stepLength / 4f;
 		Vector3 offset = LegTarget - LeftFootTarget;
 		if ((offset.magnitude > stepLength && this.step == Step.Left) || (LeftFootTarget - this.LeftFoot.position).magnitude > 2*stepLength) {
 			LeftFootTarget = LegTarget;
 			this.step = Step.LeftMoving;
 		}
 		this.LeftFootRB.velocity = (LeftFootTarget - this.LeftFoot.position) * legSpeed;
-		if (this.step == Step.LeftMoving && this.LeftFootRB.velocity.magnitude < this.move.speed) {
+		if (this.step == Step.LeftMoving && this.LeftFootRB.velocity.magnitude < legSpeed / 3f) {
 			this.step = Step.Right;
 		}
 
-		LegTarget = this.transform.position + walking * this.transform.right * legWidth / 2f + this.transform.up * 0.1f;
+		LegTarget = this.transform.position + this.transform.right * legWidth / 2f + this.transform.up * 0.1f + walking * this.transform.forward * stepLength / 4f;
 		offset = LegTarget - RightFootTarget;
 		if ((offset.magnitude > stepLength && this.step == Step.Right) || (RightFootTarget - this.RightFoot.position).magnitude > stepLength) {
 			RightFootTarget = LegTarget;
 			this.step = Step.RightMoving;
 		}
 		this.RightFootRB.velocity = (RightFootTarget - this.RightFoot.position) * legSpeed;
-		if (this.step == Step.RightMoving && this.RightFootRB.velocity.magnitude < this.move.speed) {
+		if (this.step == Step.RightMoving && this.RightFootRB.velocity.magnitude < legSpeed / 3f) {
 			this.step = Step.Left;
 		}
 
