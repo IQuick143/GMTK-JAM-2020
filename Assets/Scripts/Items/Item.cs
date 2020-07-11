@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// All the items we need need to have an entry in the enum
+public enum ItemType {
+	Extinguisher,
+	PerfectlyGenericObject,
+	Cheese,
+	Donut,
+	Burger,
+	Potato,
+	Fries
+}
+
 // Handle an item object
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -53,11 +64,4 @@ public class Item : MonoBehaviour {
 			collider.enabled = true;
 		}
 	}
-}
-
-// All the items we need need to have an entry in the enum
-public enum ItemType {
-	Extinguisher,
-	PerfectlyGenericObject,
-	Cheese
 }
