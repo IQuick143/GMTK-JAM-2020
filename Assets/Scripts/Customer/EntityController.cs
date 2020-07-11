@@ -20,7 +20,7 @@ public abstract class EntityController : MonoBehaviour
         currTime = lastChooseTime = 0f;
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        ChooseLocation();
+        //ChooseLocation();
     }
 
     void Update()
@@ -33,8 +33,11 @@ public abstract class EntityController : MonoBehaviour
         Move();
     }
 
-    virtual protected void ChooseLocation()
-    {}
+    virtual protected void ChooseLocation(Vector3 _location)
+    { }
+
+    virtual protected void ChooseRandomLocation()
+    { }
 
     protected void CheckTime()
     {
