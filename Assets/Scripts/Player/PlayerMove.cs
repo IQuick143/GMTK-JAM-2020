@@ -5,7 +5,7 @@ public class PlayerMove : MonoBehaviour {
 	public Vector3 MoveVector = Vector3.zero;
 	private new Rigidbody rigidbody;
 	[SerializeField]
-	private float speed = 2f;
+	public float speed = 2f;
 
 	void Awake() {
 		this.rigidbody = this.GetComponent<Rigidbody>();

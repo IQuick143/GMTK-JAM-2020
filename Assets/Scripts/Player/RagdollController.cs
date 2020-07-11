@@ -5,6 +5,8 @@ using UnityEngine;
 public class RagdollController : MonoBehaviour
 {
 	[SerializeField]
+	private PlayerMove move;
+	[SerializeField]
 	private Transform Head;
 	private Rigidbody HeadRB;
 	[SerializeField]
@@ -27,11 +29,14 @@ public class RagdollController : MonoBehaviour
 	[SerializeField]
 	private float height = 2f;
 	[SerializeField]
+	private Step step;
+	[SerializeField]
 	private float legWidth = 0.6f;
 	[SerializeField]
 	private float stepLength = 1f;
 	[SerializeField]
-	private float legSpeed = 10f;
+	private float legSpeedMultiplier = 10f;
+	private float legSpeed {get {return legSpeedMultiplier * this.move.speed;}}
 	[SerializeField]
 	private float TorsoTorque = 3f;
 
@@ -52,21 +57,37 @@ public class RagdollController : MonoBehaviour
 		HeadRB.velocity = (HeadTarget - this.Head.position) * 15f;
 
 		//Move the legs
-		Vector3 LegTarget = this.transform.position - this.transform.right * legWidth / 2f + this.transform.forward * stepLength / 2f;
+		float walking = this.move.MoveVector.magnitude;
+		Vector3 LegTarget = this.transform.position - walking * this.transform.right * legWidth / 2f + this.transform.up * 0.1f;
 		Vector3 offset = LegTarget - LeftFootTarget;
-		if ((offset.magnitude > stepLength && this.RightFootRB.velocity.sqrMagnitude < 5f) || this.LeftFootRB.velocity.magnitude > legSpeed) {
+		if ((offset.magnitude > stepLength && this.step == Step.Left) || (LeftFootTarget - this.LeftFoot.position).magnitude > 2*stepLength) {
 			LeftFootTarget = LegTarget;
+			this.step = Step.LeftMoving;
 		}
 		this.LeftFootRB.velocity = (LeftFootTarget - this.LeftFoot.position) * legSpeed;
+		if (this.step == Step.LeftMoving && this.LeftFootRB.velocity.magnitude < this.move.speed) {
+			this.step = Step.Right;
+		}
 
-		LegTarget = this.transform.position + this.transform.right * legWidth / 2f + this.transform.forward * stepLength / 2f;
+		LegTarget = this.transform.position + walking * this.transform.right * legWidth / 2f + this.transform.up * 0.1f;
 		offset = LegTarget - RightFootTarget;
-		if ((offset.magnitude > stepLength && this.LeftFootRB.velocity.sqrMagnitude < 5f) || this.RightFootRB.velocity.magnitude > legSpeed) {
+		if ((offset.magnitude > stepLength && this.step == Step.Right) || (RightFootTarget - this.RightFoot.position).magnitude > stepLength) {
 			RightFootTarget = LegTarget;
+			this.step = Step.RightMoving;
 		}
 		this.RightFootRB.velocity = (RightFootTarget - this.RightFoot.position) * legSpeed;
+		if (this.step == Step.RightMoving && this.RightFootRB.velocity.magnitude < this.move.speed) {
+			this.step = Step.Left;
+		}
 
 		//Orient the body
 		this.TorsoRB.AddTorque(Vector3.Cross(this.Torso.forward, this.transform.forward) * TorsoTorque);
+	}
+
+	private enum Step {
+		Left,
+		LeftMoving,
+		Right,
+		RightMoving
 	}
 }
