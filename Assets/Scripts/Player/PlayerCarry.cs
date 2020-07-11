@@ -10,11 +10,15 @@ public class PlayerCarry : MonoBehaviour {
 	[SerializeField]
 	private float pickUpDistance = 3f;
 	[SerializeField]
-	private PlayerItem item;
+	private Item item;
 
 	void Update() {
 		if (this.item != null) {
 			this.item.targetPosition = this.transform.position + this.transform.forward * this.carryDistance + this.transform.up * this.carryHeight;
+			if (Input.GetKeyDown(KeyCode.Mouse0)) {
+				this.item.Drop();
+				this.item = null;
+			}
 		} else if (Input.GetKeyDown(KeyCode.Mouse0)) {
 			//Grab an item
 			var items = Physics.OverlapSphere(this.transform.position, pickUpDistance, 1 << 8);
@@ -23,15 +27,17 @@ public class PlayerCarry : MonoBehaviour {
 			float smallestSqrDistance = float.MaxValue;
 			for (int i = 0; i < items.Length; i++) {
 				float sqrDistance = (items[i].transform.position - this.transform.position).sqrMagnitude;
+				Item item = items[i].GetComponent<Item>();
 				if (smallestSqrDistance > sqrDistance &&
-					items[i].GetComponent<Item>() != null) {
+					item != null && !item.held) {
 					closest = items[i].GetComponent<Item>();
 					smallestSqrDistance = sqrDistance;
 				}
 			}
 
 			if (closest != null) {
-				this.item = closest.Grab();
+				this.item = closest;
+				this.item.Grab();
 			}
 		}
 	}
