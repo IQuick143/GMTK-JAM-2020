@@ -30,7 +30,7 @@ public class PlayerCarry : MonoBehaviour {
 			this.item.targetPosition = this.transform.position + this.Torso.transform.forward * this.item.carryDistance + this.transform.up * this.item.carryHeight;
 			try {
 				this.RightHandRB.velocity = grabSpeed * (this.item.right.position - RightHand.position);
-				this.LeftHandRB.velocity = grabSpeed * (this.item.right.position - LeftHand.position);
+				this.LeftHandRB.velocity = grabSpeed * (this.item.left.position - LeftHand.position);
 			} catch(System.Exception) {}
 
 			if (item.orientItem) {
