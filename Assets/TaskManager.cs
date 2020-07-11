@@ -30,9 +30,12 @@ public class TaskManager : MonoBehaviour
     {
         current_time += Time.deltaTime;
 
-        if (schedule[schedule_index+1].timestamp <= current_time)
+        if (schedule_index + 1 < schedule.Count)
         {
-            AdvanceSchedule();
+            if (schedule[schedule_index + 1].timestamp <= current_time)
+            {
+                AdvanceSchedule();
+            }
         }
     }
 
