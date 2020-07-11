@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveVector: {x: 0, y: 0, z: 0}
-  speed: 2
+  speed: 5
 --- !u!136 &6217297212936799232
 CapsuleCollider:
   m_ObjectHideFlags: 0
