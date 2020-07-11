@@ -37,6 +37,11 @@ public class TaskManager : MonoBehaviour
                 AdvanceSchedule();
             }
         }
+        else
+        {
+            schedule_index = -1;
+            current_time = 0.0f;
+        }
     }
 
     private void AdvanceSchedule()
