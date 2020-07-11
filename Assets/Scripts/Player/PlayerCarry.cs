@@ -27,7 +27,6 @@ public class PlayerCarry : MonoBehaviour {
 		} else if (Input.GetKeyDown(KeyCode.Mouse0)) {
 			//Grab an item
 			var items = Physics.OverlapSphere(this.transform.position, pickUpDistance, 1 << 8);
-			Debug.Log(items.Length);
 			Item closest = null;
 			float smallestSqrDistance = float.MaxValue;
 			for (int i = 0; i < items.Length; i++) {

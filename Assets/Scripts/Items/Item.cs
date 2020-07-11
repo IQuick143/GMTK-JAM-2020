@@ -45,6 +45,7 @@ public class Item : MonoBehaviour {
 
 // All the items we need need to have an entry in the enum
 public enum ItemType {
+	Extinguisher,
 	PerfectlyGenericObject,
 	Cheese
 }
