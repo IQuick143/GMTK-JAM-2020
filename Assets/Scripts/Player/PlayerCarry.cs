@@ -15,6 +15,11 @@ public class PlayerCarry : MonoBehaviour {
 	void Update() {
 		if (this.item != null) {
 			this.item.targetPosition = this.transform.position + this.transform.forward * this.carryDistance + this.transform.up * this.carryHeight;
+			if (item.orientItem) {
+				Vector3 difference = (this.item.transform.position - this.transform.position).normalized;
+				Vector3 itemForward = difference - Vector3.Dot(difference, this.transform.up) * this.transform.up;
+				this.item.transform.rotation = Quaternion.LookRotation(itemForward, this.transform.up);
+			}
 			if (Input.GetKeyDown(KeyCode.Mouse0)) {
 				this.item.Drop();
 				this.item = null;

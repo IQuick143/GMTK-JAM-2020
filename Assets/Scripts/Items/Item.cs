@@ -8,7 +8,8 @@ using UnityEngine;
 public class Item : MonoBehaviour {
 	public ItemType type;
 	public bool held;
-	
+
+	public bool orientItem = false;	
 	public Vector3 targetPosition = Vector3.zero;
 
 	public new Rigidbody rigidbody;
