@@ -135,13 +135,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8628861268068171640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bdcc8046608aa14688c58e7feaec566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 0}
   tag: Cheese
+  indicator: {fileID: 6898606057773778927}
 --- !u!114 &2026902114746053141
 MonoBehaviour:
   m_ObjectHideFlags: 0
