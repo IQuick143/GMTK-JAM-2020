@@ -12,7 +12,7 @@ public class ObjectSpin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        default_pos = transform.position;
+        default_pos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -24,6 +24,6 @@ public class ObjectSpin : MonoBehaviour
 
         Vector3 set_position = default_pos;
         set_position.y += (Mathf.Sin(current_time) * rise_amount);
-        transform.position = set_position;
+        transform.localPosition = set_position;
     }
 }
