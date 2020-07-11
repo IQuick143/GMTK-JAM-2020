@@ -10,7 +10,6 @@ public class Extinguisher : MonoBehaviour {
 
 	void Update() {
 		var emission = particleSystem.emission;
-		Debug.Log(item);
 		emission.enabled = item.held;
 	}
 }
