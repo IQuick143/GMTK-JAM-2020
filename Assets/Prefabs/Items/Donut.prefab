@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   carryDistance: 0.75
-  carryHeight: 1
+  carryHeight: 1.25
   orientItem: 0
   held: 0
   targetPosition: {x: 0, y: 0, z: 0}
