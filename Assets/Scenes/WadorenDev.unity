@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 7559124860717967338, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7559124860717967340, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
@@ -218,6 +218,7 @@ MonoBehaviour:
   forcePower: 20
   minPoint: {x: -10, y: -10}
   maxPoint: {x: 10, y: 10}
+  tableRepulsionWeight: 2
 --- !u!1 &249216227
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,7 @@ PrefabInstance:
     - target: {fileID: 7559124860717967338, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7559124860717967340, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
@@ -501,6 +502,7 @@ MonoBehaviour:
   forcePower: 20
   minPoint: {x: -10, y: -10}
   maxPoint: {x: 10, y: 10}
+  tableRepulsionWeight: 2
 --- !u!1 &441367562
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +756,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8481819061153568329, guid: 5790884c97f67304fa89d88099c41989,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481819061153568329, guid: 5790884c97f67304fa89d88099c41989,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5790884c97f67304fa89d88099c41989, type: 3}
 --- !u!1001 &732051329
@@ -847,19 +859,14 @@ MonoBehaviour:
   forcePower: 20
   minPoint: {x: -10, y: -10}
   maxPoint: {x: 10, y: 10}
---- !u!1 &1026062656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4368055207989967753, guid: 5790884c97f67304fa89d88099c41989,
+  tableRepulsionWeight: 7.5
+--- !u!114 &1026062661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8052622091691681261, guid: 5790884c97f67304fa89d88099c41989,
     type: 3}
   m_PrefabInstance: {fileID: 7789225720274015685}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1026062657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026062656}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 476f60887ff13f64690e474c238f8e84, type: 3}
@@ -1161,7 +1168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tables:
-  - {fileID: 1026062657}
+  - {fileID: 1026062661}
   - {fileID: 2002797834}
   - {fileID: 1979540055}
   - {fileID: 1494657782}
@@ -1433,7 +1440,7 @@ PrefabInstance:
     - target: {fileID: 6217297212936799233, guid: 7241cc4f0645fbb499aaf8a9606af757,
         type: 3}
       propertyPath: speed
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6217297212936799234, guid: 7241cc4f0645fbb499aaf8a9606af757,
         type: 3}
@@ -1495,6 +1502,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerParent
       objectReference: {fileID: 0}
+    - target: {fileID: 6217297212936799239, guid: 7241cc4f0645fbb499aaf8a9606af757,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7241cc4f0645fbb499aaf8a9606af757, type: 3}
 --- !u!1001 &7559124860318454656
@@ -1517,7 +1529,7 @@ PrefabInstance:
     - target: {fileID: 7559124860717967340, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.24
+      value: -29.3
       objectReference: {fileID: 0}
     - target: {fileID: 7559124860717967340, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
@@ -1568,6 +1580,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559124860717967342, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559124860717967342, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1, type: 3}

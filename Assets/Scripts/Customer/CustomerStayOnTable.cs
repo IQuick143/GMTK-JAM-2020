@@ -22,6 +22,11 @@ public class CustomerStayOnTable : MonoBehaviour
 
     protected TableManager tableManager;
 
+    //How much weight the table repulsion has over the random direction vector
+    public float tableRepulsionWeight = 2f;
+
+     [HideInInspector] public static float tableAvoidRadius = 3.75f;
+
     void Start()
     {
         currTime = lastChooseTime = 0f;
@@ -69,21 +74,29 @@ public class CustomerStayOnTable : MonoBehaviour
     private void Move()
     {
         //A blend between a random direction and avoiding the tables
-        Vector3 dir = (targetLocation - transform.position).normalized;
-        float tableRepulshionWeight = 2f;//We'll give priority to the tables over the random direction
-        float tableRepulsionRadius = 3.4f;
+        Vector3 dir = (RemoveY(targetLocation) - RemoveY(transform.position)).normalized;
         foreach (Table table in tableManager.tables)
         {
-            Vector3 tableRepulsionVec = transform.position - table.transform.position;
-            //float dir
-            if (tableRepulsionVec.sqrMagnitude < tableRepulsionRadius * tableRepulsionRadius)
+            Vector3 tableCustomerVec = RemoveY(transform.position) - RemoveY(table.transform.position);
+            float distFromTable = tableCustomerVec.magnitude;
+            if (distFromTable < tableAvoidRadius)
             {
+                rb.AddForce(tableCustomerVec.normalized * rb.velocity.magnitude, ForceMode.VelocityChange);
+
+                //dir += tableCustomerVec.normalized * tableRepulsionWeight;
+
                 //The closer from the table you are, the more it pushes
-                //dir += tableRepulsionVec.normalized * (1 - (tableRepulsionRadius));
+                //dir += tableCustomerVec.normalized * (1 - (distFromTable / tableAvoidRadius)) * tableRepulsionWeight;
             }
         }
-        dir.Normalize();
+        //dir.Normalize();
         rb.AddForce(dir * forcePower);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    }
+
+    private Vector3 RemoveY(Vector3 vec)
+    {
+        return new Vector3(vec.x, 0f, vec.z);
     }
 
     //If it touches a table
@@ -104,5 +117,13 @@ public class CustomerStayOnTable : MonoBehaviour
             ChooseLocation();
             lastChooseTime = currTime;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //TODO: Make them be at y 1
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(targetLocation, 0.5f);
+        Gizmos.DrawLine(transform.position, targetLocation);
     }
 }
