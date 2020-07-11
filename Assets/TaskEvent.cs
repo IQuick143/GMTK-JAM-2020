@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TaskEvent : MonoBehaviour
 {
-    [SerializeField] private string tag;
+    [SerializeField] private new string tag;
 
     [SerializeField] private GameObject indicator;
     // Start is called before the first frame update
