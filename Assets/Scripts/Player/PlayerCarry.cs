@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerCarry : MonoBehaviour {
+	[SerializeField]
+	private float carryDistance = 1f;
+	[SerializeField]
+	private float carryHeight = 1f;
+	[SerializeField]
+	private float pickUpDistance = 3f;
+	[SerializeField]
+	private PlayerItem item;
+
+	void Update() {
+		if (this.item != null) {
+			this.item.targetPosition = this.transform.position + this.transform.forward * this.carryDistance + this.transform.up * this.carryHeight;
+		} else if (Input.GetKeyDown(KeyCode.Mouse0)) {
+			//Grab an item
+			var items = Physics.OverlapSphere(this.transform.position, pickUpDistance, 1 << 8);
+			Debug.Log(items.Length);
+			Item closest = null;
+			float smallestSqrDistance = float.MaxValue;
+			for (int i = 0; i < items.Length; i++) {
+				float sqrDistance = (items[i].transform.position - this.transform.position).sqrMagnitude;
+				if (smallestSqrDistance > sqrDistance &&
+					items[i].GetComponent<Item>() != null) {
+					closest = items[i].GetComponent<Item>();
+					smallestSqrDistance = sqrDistance;
+				}
+			}
+
+			if (closest != null) {
+				this.item = closest.Grab();
+			}
+		}
+	}
+}
