@@ -17,11 +17,14 @@ public class TaskEvent : MonoBehaviour
     [SerializeField] private List<IndicatorReference> food_indicators = new List<IndicatorReference>();
 
     private List<string> food_orders = new List<string>();
+    private float current_time = 0.0f;
+    private float cooldown = 10.0f;
 
     // Update is called once per frame
     void Update()
     {
-        if (food_orders.Count > 0)
+        current_time += Time.deltaTime;
+        if ((food_orders.Count > 0) && (current_time > cooldown))
         {
             foreach (var indicators in food_indicators)
             {
@@ -67,6 +70,8 @@ public class TaskEvent : MonoBehaviour
             {
                 food_orders.RemoveAt(0);
                 Destroy(_other.gameObject);
+
+                current_time = 0.0f;
             }
             else if (IsFood(_other.tag))
             {
