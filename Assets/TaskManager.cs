@@ -13,6 +13,8 @@ public class TaskManager : MonoBehaviour
         public TaskEvent task_event;
     };
 
+    [SerializeField] private List<string> food_tags = new List<string>();
+
     [SerializeField] private Task current_task;
     [SerializeField] private List<Task> schedule = new List<Task>();
     float current_time = 0.0f;
@@ -21,7 +23,8 @@ public class TaskManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        food_tags.Add("Cheese");
+        food_tags.Add("Burger");
     }
 
     // Update is called once per frame
@@ -53,6 +56,8 @@ public class TaskManager : MonoBehaviour
 
     private void ActivateTask(Task _task)
     {
-        _task.task_event.enabled = true;
+        string food_tag = food_tags[UnityEngine.Random.Range(0, food_tags.Count)];
+
+        _task.task_event.SetFood(food_tag);
     }
 }
