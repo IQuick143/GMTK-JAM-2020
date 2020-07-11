@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour {
 	void Update() {
 		MoveVector = Input.GetAxis("Horizontal") * this.transform.right + Input.GetAxis("Vertical") * this.transform.forward;
 		if (MoveVector.sqrMagnitude > 1) MoveVector.Normalize();
-		this.rigidbody.velocity = MoveVector * speed;
+		this.rigidbody.AddForce(MoveVector * speed);
+		//this.rigidbody.velocity = MoveVector * speed;
 	}
 }
