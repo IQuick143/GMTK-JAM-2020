@@ -11,7 +11,6 @@ public class TaskManager : MonoBehaviour
     {
         public float timestamp;
         public TaskEvent task_event;
-        public GameObject indicator;
     };
 
     [SerializeField] private Task current_task;
@@ -30,9 +29,17 @@ public class TaskManager : MonoBehaviour
     {
         current_time += Time.deltaTime;
 
-        if (schedule[schedule_index+1].timestamp <= current_time)
+        if (schedule_index + 1 < schedule.Count)
         {
-            AdvanceSchedule();
+            if (schedule[schedule_index + 1].timestamp <= current_time)
+            {
+                AdvanceSchedule();
+            }
+        }
+        else
+        {
+            schedule_index = -1;
+            current_time = 0.0f;
         }
     }
 
@@ -46,6 +53,6 @@ public class TaskManager : MonoBehaviour
 
     private void ActivateTask(Task _task)
     {
-        _task.indicator.SetActive(true);
+        _task.task_event.enabled = true;
     }
 }
