@@ -28,8 +28,8 @@ public class PlayerCarry : MonoBehaviour {
 	void Update() {
 		if (this.item != null) {
 			this.item.targetPosition = this.transform.position + this.Torso.transform.forward * this.item.carryDistance + this.transform.up * this.item.carryHeight;
-			this.RightHandRB.velocity = grabSpeed * (this.item.right.position - RightHand.position);
-			this.LeftHandRB.velocity = grabSpeed * (this.item.right.position - LeftHand.position);
+			if (this.item.right != null) this.RightHandRB.velocity = grabSpeed * (this.item.right.position - RightHand.position);
+			if (this.item.left  != null) this.LeftHandRB.velocity  = grabSpeed * (this.item.left.position  - LeftHand.position);
 
 			if (item.orientItem) {
 				Vector3 difference = (this.item.transform.position - this.transform.position).normalized;
