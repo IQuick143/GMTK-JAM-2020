@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class PlayerCarry : MonoBehaviour {
 	[SerializeField]
-	private float carryDistance = 1f;
+	private Transform Torso;
 	[SerializeField]
-	private float carryHeight = 1f;
+	private Transform LeftHand;
+	private Rigidbody LeftHandRB;
+	[SerializeField]
+	private Transform RightHand;
+	private Rigidbody RightHandRB;
 	[SerializeField]
 	private float pickUpDistance = 3f;
 	[SerializeField]
+	private float grabSpeed = 10f;
+	[SerializeField]
+	private float itemTurningPower = 10f;
+	[SerializeField]
 	private Item item;
+
+	void Start() {
+		this.RightHandRB = this.RightHand.GetComponent<Rigidbody>();
+		this.LeftHandRB = this.LeftHand.GetComponent<Rigidbody>();
+	}
 
 	void Update() {
 		if (this.item != null) {
-			this.item.targetPosition = this.transform.position + this.transform.forward * this.carryDistance + this.transform.up * this.carryHeight;
+			this.item.targetPosition = this.transform.position + this.Torso.transform.forward * this.item.carryDistance + this.transform.up * this.item.carryHeight;
+			this.RightHandRB.velocity = grabSpeed * (this.item.right.position - RightHand.position);
+			this.LeftHandRB.velocity = grabSpeed * (this.item.right.position - LeftHand.position);
+
 			if (item.orientItem) {
 				Vector3 difference = (this.item.transform.position - this.transform.position).normalized;
 				Vector3 itemForward = difference - Vector3.Dot(difference, this.transform.up) * this.transform.up;
-				this.item.transform.rotation = Quaternion.LookRotation(itemForward, this.transform.up);
+				this.item.rigidbody.AddTorque(Vector3.Cross(this.item.transform.forward, itemForward) * itemTurningPower);
 			}
 			if (Input.GetKeyDown(KeyCode.Mouse0)) {
 				this.item.Drop();
