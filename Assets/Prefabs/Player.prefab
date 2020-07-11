@@ -150,15 +150,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Head: {fileID: 6786511410041400539}
   LeftHand: {fileID: 447570028754486724}
+  Torso: {fileID: 1878122769019259651}
   RightHand: {fileID: 6024776734076749828}
   LeftFoot: {fileID: 971981043238741321}
-  LeftFootMoving: 0
   RightFoot: {fileID: 3727655453206863426}
-  RightFootMoving: 0
   height: 2
   legWidth: 1
   stepLength: 1.5
   legSpeed: 9
+  TorsoTorque: 10
 --- !u!1 &6217297212936799238
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +341,12 @@ PrefabInstance:
 --- !u!4 &8400513221714270506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1631948114608355244, guid: b1e92812ac895ef479a914795760557e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7075513925694467718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1878122769019259651 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8656244869841184133, guid: b1e92812ac895ef479a914795760557e,
     type: 3}
   m_PrefabInstance: {fileID: 7075513925694467718}
   m_PrefabAsset: {fileID: 0}
