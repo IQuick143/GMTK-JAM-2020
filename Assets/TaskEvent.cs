@@ -15,6 +15,8 @@ public class TaskEvent : MonoBehaviour
     }
 
     [SerializeField] private List<IndicatorReference> food_indicators = new List<IndicatorReference>();
+    [SerializeField] private float cooldown = 20.0f;
+    private float current_time = 0.0f;
 
     private List<string> food_orders = new List<string>();
 
@@ -44,6 +46,16 @@ public class TaskEvent : MonoBehaviour
         }
     }
 
+    private bool IsFood(string _food)
+    {
+        foreach (var indicator in food_indicators)
+        {
+            if (indicator.food_name == _food)
+                return true;
+        }
+        return false;
+    }
+
     public void SetFood(string _food)
     {
         food_orders.Add(_food);
@@ -58,6 +70,16 @@ public class TaskEvent : MonoBehaviour
                 food_orders.RemoveAt(0);
                 Destroy(_other.gameObject);
             }
+            else if (IsFood(_other.tag))
+            {
+                // Ate the food but didn't order it
+                Destroy(_other.gameObject);
+            }
+        }
+        else if (IsFood(_other.tag))
+        {
+            // Ate the food but didn't order it
+            Destroy(_other.gameObject);
         }
     }
 }
