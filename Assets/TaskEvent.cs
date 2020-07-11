@@ -14,16 +14,28 @@ public class TaskEvent : MonoBehaviour
         public GameObject indicator_object;
     }
 
+    [SerializeField] private bool is_customer = true;
+    [SerializeField] private Rigidbody customer_rb;
+    [SerializeField] private float hunger = 0.0f;
+    [SerializeField] private float hunger_threshold = 15.0f;
     [SerializeField] private List<IndicatorReference> food_indicators = new List<IndicatorReference>();
+
+    private Transform player_transform;
 
     private List<string> food_orders = new List<string>();
     private float current_time = 0.0f;
     private float cooldown = 10.0f;
 
+    private void Start()
+    {
+        player_transform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     // Update is called once per frame
     void Update()
     {
         current_time += Time.deltaTime;
+        hunger += Time.deltaTime;
         if ((food_orders.Count > 0) && (current_time > cooldown))
         {
             foreach (var indicators in food_indicators)
@@ -45,6 +57,19 @@ public class TaskEvent : MonoBehaviour
                 indicators.indicator_object.SetActive(false);
             }
         }
+
+        if (hunger > hunger_threshold)
+        {
+            AngryCustomer();
+        }
+
+    }
+
+    private void AngryCustomer()
+    {
+        Vector3 move_direction = (player_transform.position - customer_rb.transform.position).normalized;
+
+        customer_rb.AddForce(move_direction * Time.deltaTime * (700.0f * customer_rb.mass));
     }
 
     private bool IsFood(string _food)
@@ -68,6 +93,7 @@ public class TaskEvent : MonoBehaviour
         {
             if ((_other.tag == food_orders[0]) && (enabled == true))
             {
+                hunger = 0.0f;
                 food_orders.RemoveAt(0);
                 Destroy(_other.gameObject);
 
