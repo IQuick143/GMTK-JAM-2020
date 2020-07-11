@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TaskEvent : MonoBehaviour
 {
+    [SerializeField] private Collider col;
+    [SerializeField] private string tag;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,13 @@ public class TaskEvent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider _other)
+    {
+        if (_other.tag == tag)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
