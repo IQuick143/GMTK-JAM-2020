@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomerController : MonoBehaviour//TODO: Entity
+public abstract class EntityController : MonoBehaviour
 {
-    private Rigidbody rb;
+    protected Rigidbody rb;
     public float chooseLocationTime;
-    private float currTime;
-    private float lastChooseTime;
-    private Vector3 location;
-    public Vector2 minPoint;
-    public Vector2 maxPoint;
+    protected float currTime;
+    protected float lastChooseTime;
+    protected Vector3 targetLocation;
 
     public float forcePower;
 
@@ -31,24 +29,25 @@ public class CustomerController : MonoBehaviour//TODO: Entity
         Move();
     }
 
-    private void ChooseLocation()
-    {
-        location = new Vector3(Random.Range(minPoint.x, maxPoint.x), 0f, Random.Range(minPoint.y, maxPoint.y));
-    }
+    virtual protected void ChooseLocation()
+    {}
 
-    private void CheckTime()
+    protected void CheckTime()
     {
         currTime += Time.deltaTime;
         if (currTime >= lastChooseTime + chooseLocationTime)
         {
-            ChooseLocation();
+            TimePassed();
             lastChooseTime = lastChooseTime + chooseLocationTime;
         }
     }
 
+    virtual protected void TimePassed()
+    {}
+
     private void Move()
     {
-        Vector3 dir = (location - transform.position).normalized;
+        Vector3 dir = (targetLocation - transform.position).normalized;
         rb.AddForce(dir * forcePower);
     }
 }
