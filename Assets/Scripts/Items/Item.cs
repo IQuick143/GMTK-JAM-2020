@@ -23,7 +23,7 @@ public class Item : MonoBehaviour {
 	public float carryHeight = 1f;
 	public bool orientItem = false;	
 
-	public bool held;
+	public bool held = false;
 	public Vector3 targetPosition = Vector3.zero;
 
 	public Transform left;

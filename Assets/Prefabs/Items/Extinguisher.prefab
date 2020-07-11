@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6486545473791958107}
   - component: {fileID: 6486545473791958106}
   - component: {fileID: 6486545473791958105}
+  - component: {fileID: 2187058000169374790}
   m_Layer: 0
   m_Name: Extinguisher
   m_TagString: Untagged
@@ -89,6 +90,20 @@ MonoBehaviour:
   right: {fileID: 4354842381502751973}
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
+--- !u!114 &2187058000169374790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486545473791958104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1f926222336df48bc0946ad2613268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 6486545473791958105}
+  particleSystem: {fileID: 6486545474387783720}
 --- !u!1 &6486545474387783733
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +115,6 @@ GameObject:
   - component: {fileID: 6486545474387783734}
   - component: {fileID: 6486545474387783720}
   - component: {fileID: 6486545474387783735}
-  - component: {fileID: 7912672610274413560}
   m_Layer: 0
   m_Name: ParticleSystem
   m_TagString: Untagged
@@ -138,7 +152,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -4862,18 +4876,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7912672610274413560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6486545474387783733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1f926222336df48bc0946ad2613268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7712545605358614872
 GameObject:
   m_ObjectHideFlags: 0
