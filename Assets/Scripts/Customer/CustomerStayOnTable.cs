@@ -25,6 +25,9 @@ public class CustomerStayOnTable : MonoBehaviour
     //How much weight the table repulsion has over the random direction vector
     public float tableRepulsionWeight = 2f;
 
+    private float lastTimeTouchPlayer = 0f;
+    private float noAvoidTablesTime = 1f;
+
      [HideInInspector] public static float tableAvoidRadius = 3.75f;
 
     void Start()
@@ -75,21 +78,24 @@ public class CustomerStayOnTable : MonoBehaviour
     {
         //A blend between a random direction and avoiding the tables
         Vector3 dir = (RemoveY(targetLocation) - RemoveY(transform.position)).normalized;
-        foreach (Table table in tableManager.tables)
+        if (currTime > lastTimeTouchPlayer + noAvoidTablesTime)
         {
-            Vector3 tableCustomerVec = RemoveY(transform.position) - RemoveY(table.transform.position);
-            float distFromTable = tableCustomerVec.magnitude;
-            if (distFromTable < tableAvoidRadius)
+            foreach (Table table in tableManager.tables)
             {
-                rb.AddForce(tableCustomerVec.normalized * rb.velocity.magnitude, ForceMode.VelocityChange);
+                Vector3 tableCustomerVec = RemoveY(transform.position) - RemoveY(table.transform.position);
+                float distFromTable = tableCustomerVec.magnitude;
+                if (distFromTable < tableAvoidRadius)
+                {
+                    rb.AddForce(tableCustomerVec.normalized * rb.velocity.magnitude, ForceMode.VelocityChange);
 
-                //dir += tableCustomerVec.normalized * tableRepulsionWeight;
+                    //dir += tableCustomerVec.normalized * tableRepulsionWeight;
 
-                //The closer from the table you are, the more it pushes
-                //dir += tableCustomerVec.normalized * (1 - (distFromTable / tableAvoidRadius)) * tableRepulsionWeight;
+                    //The closer from the table you are, the more it pushes
+                    //dir += tableCustomerVec.normalized * (1 - (distFromTable / tableAvoidRadius)) * tableRepulsionWeight;
+                }
             }
+            //dir.Normalize();
         }
-        //dir.Normalize();
         rb.AddForce(dir * forcePower);
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
     }
@@ -116,6 +122,10 @@ public class CustomerStayOnTable : MonoBehaviour
             sittingOnTable = false;
             ChooseLocation();
             lastChooseTime = currTime;
+        }
+        else if (other.CompareTag("Player"))
+        {
+            lastTimeTouchPlayer = currTime;
         }
     }
 
