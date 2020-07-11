@@ -23,6 +23,7 @@ public class TaskEvent : MonoBehaviour
         if (_other.tag == tag)
         {
             gameObject.SetActive(false);
+            Destroy(_other.gameObject);
         }
     }
 }
