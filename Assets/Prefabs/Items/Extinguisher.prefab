@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6486545473791958104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.72, z: 3.4356077}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6741448564852055536}
   - {fileID: 6486545474387783734}
@@ -47,8 +47,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.34
-  m_Height: 1.75
+  m_Radius: 0.25
+  m_Height: 1.17
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6486545473791958106
@@ -4898,7 +4898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7712545605358614872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.312, y: 0.268, z: 0}
+  m_LocalPosition: {x: -0.312, y: 0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6486545473791958108}
@@ -4928,7 +4928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9136084242651532229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 0.838, z: 0}
+  m_LocalPosition: {x: 0.006, y: 0.608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6486545473791958108}
@@ -4995,6 +4995,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 31eddd5162fc6fe45aa258cc6f0ccf26,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 31eddd5162fc6fe45aa258cc6f0ccf26,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 31eddd5162fc6fe45aa258cc6f0ccf26,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: -126398287958426664, guid: 31eddd5162fc6fe45aa258cc6f0ccf26,
         type: 3}

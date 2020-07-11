@@ -11,12 +11,16 @@ public class CustomerRandomController : EntityController
     private AudioClip eatOrderSFX;
     private AudioClip eatSFX;
 
-    override protected void ChooseLocation()
+    override protected void ChooseRandomLocation()
     {
         targetLocation = new Vector3(Random.Range(minPoint.x, maxPoint.x), 0f, Random.Range(minPoint.y, maxPoint.y));
     }
+    override protected void ChooseLocation(Vector3 _location)
+    {
+        targetLocation = _location;
+    }
     override protected void TimePassed()
     {
-        ChooseLocation();
+        ChooseRandomLocation();
     }
 }

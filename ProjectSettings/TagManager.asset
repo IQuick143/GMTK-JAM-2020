@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Cheese
   - Burger
+  - Fries
+  - Table
   layers:
   - Default
   - TransparentFX
