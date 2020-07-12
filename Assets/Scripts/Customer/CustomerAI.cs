@@ -69,6 +69,7 @@ public class CustomerAI : MonoBehaviour {
 	void Update() {
 		if (was_fed) {
 			customer_state = (customer_state == STATE.ANGRY)?STATE.LEAVING:STATE.FED;
+			this.was_fed = false;
 		}
 
 		switch (customer_state) {
@@ -100,7 +101,6 @@ public class CustomerAI : MonoBehaviour {
 				}
 			case STATE.FED: {
 					this.customer_state = STATE.DIGESTING;
-					this.was_fed = false;
                     audioSource.PlayOneShot(orderCompleteSFX);
 					StartCoroutine(Digesting());
 					break;
