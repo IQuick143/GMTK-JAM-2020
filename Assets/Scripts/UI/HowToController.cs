@@ -7,22 +7,19 @@ public class HowToController : MonoBehaviour
 	[SerializeField]
 	private GameObject[] pages;
 	private int curr_page = 0;
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
 
-    // Update is called once per frame
-    void Update() {
-        
+    void Start() {
+        UpdatePages();
     }
 
 	public void Next() {
 		curr_page++;
+		UpdatePages();
 	}
 
 	public void Prev() {
 		curr_page--;
+		UpdatePages();
 	}
 
 	public void Return() {
