@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 5159275108485992179}
   - component: {fileID: 5159275108485992178}
   - component: {fileID: 5159275108485992181}
+  - component: {fileID: 6306713670104231997}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -249,7 +250,7 @@ BoxCollider:
   m_GameObject: {fileID: 5159275108485992183}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.08304, y: 3.0716677, z: 0.94254017}
   m_Center: {x: 0.039868355, y: 0.046554565, z: -0.21494722}
@@ -318,6 +319,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3907351, y: 3.0716677, z: 1.4550276}
   m_Center: {x: 1.8878176, y: 0.046554565, z: 0.868484}
+--- !u!65 &6306713670104231997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159275108485992183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.955845, y: 0.8366146, z: 0.6614846}
+  m_Center: {x: 0.06733084, y: -1.0002823, z: -0.4031301}
 --- !u!1001 &5159275107596385168
 PrefabInstance:
   m_ObjectHideFlags: 0
