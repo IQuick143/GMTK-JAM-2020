@@ -27,6 +27,8 @@ public class CustomerAI : MonoBehaviour {
 	private new Rigidbody rigidbody;
 	private NavMeshPath path;
 
+    private bool is_dest_inited = false;
+
 	private Vector3 goal;
 	private Vector3 waypoint;
 
@@ -183,17 +185,23 @@ public class CustomerAI : MonoBehaviour {
 
 	private void EnterState() {
 		customer_state = STATE.FIND_SEAT;
+        is_dest_inited = false;
 	}
 
 	private void FindSeat() {
-		// Search for table
-		GameObject[] table = GameObject.FindGameObjectsWithTag("Table");
+        if (!is_dest_inited)
+        {
+    		// Search for table
+	    	GameObject[] table = GameObject.FindGameObjectsWithTag("Table");
 
-        int selected_table = UnityEngine.Random.Range(0, table.Length);
+            int selected_table = UnityEngine.Random.Range(0, table.Length);
+            is_dest_inited = true;
 
-		PathfindToDestination(table[selected_table].transform.position, 6.0f);
+            goal = table[selected_table].transform.position;
+        }
+        PathfindToDestination(goal, 6.0f);
 
-		if (Vector3.Distance(transform.position,goal) < 3.0f) {
+        if (Vector3.Distance(transform.position,goal) < 3.0f) {
 			customer_state = STATE.WAIT_FOR_FOOD;
 		}
 	}
