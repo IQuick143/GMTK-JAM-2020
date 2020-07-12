@@ -100,7 +100,18 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 		}
-	}
+        Angrymeter();
+    }
+
+    private void Angrymeter()
+    {
+        float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
+        foreach (MeshRenderer renderer in modelMeshes)
+        {
+            renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
+        }
+        Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
+    }
 
 	private IEnumerator Digesting() {
 		yield return new WaitForSeconds(waitAfterFood);
