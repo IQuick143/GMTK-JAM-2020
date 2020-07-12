@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6217297211827947598}
   - component: {fileID: 6217297211827947599}
+  - component: {fileID: 7259170476680400807}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -74,6 +75,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &7259170476680400807
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217297211827947597}
+  m_Enabled: 1
 --- !u!1 &6217297212928968581
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,9 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfeec07dcd1883347937049fa42b7bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryDistance: 1.15
-  carryHeight: 0.25
+  Torso: {fileID: 1878122769019259651}
+  LeftHand: {fileID: 5852222962021964889}
+  RightHand: {fileID: 729136035978372958}
   pickUpDistance: 3
+  grabSpeed: 50
+  itemTurningPower: 10
   item: {fileID: 0}
 --- !u!114 &2918381356069959920
 MonoBehaviour:
@@ -160,7 +172,7 @@ MonoBehaviour:
   legWidth: 0.8
   stepLength: 1
   legSpeedMultiplier: 1.9
-  TorsoTorque: 10
+  TorsoTorque: 20
 --- !u!1 &6217297212936799238
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +350,21 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.0056164716
       objectReference: {fileID: 0}
+    - target: {fileID: 6580416297863256079, guid: b1e92812ac895ef479a914795760557e,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000044674733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580416297863256079, guid: b1e92812ac895ef479a914795760557e,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.0037535655
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580416297863256079, guid: b1e92812ac895ef479a914795760557e,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00018477734
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1e92812ac895ef479a914795760557e, type: 3}
 --- !u!4 &8400513221714270506 stripped
@@ -376,9 +403,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7075513925694467718}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5852222962021964889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3676630176855044831, guid: b1e92812ac895ef479a914795760557e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7075513925694467718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6024776734076749828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3579527077226342018, guid: b1e92812ac895ef479a914795760557e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7075513925694467718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &729136035978372958 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7507270991638448600, guid: b1e92812ac895ef479a914795760557e,
     type: 3}
   m_PrefabInstance: {fileID: 7075513925694467718}
   m_PrefabAsset: {fileID: 0}

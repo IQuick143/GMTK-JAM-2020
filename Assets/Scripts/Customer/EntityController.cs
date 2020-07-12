@@ -12,11 +12,11 @@ public abstract class EntityController : MonoBehaviour
 
     public float forcePower;
 
-    void Start()
+    protected void Start()
     {
         currTime = lastChooseTime = 0f;
         rb = GetComponent<Rigidbody>();
-        ChooseLocation();
+        //ChooseLocation();
     }
 
     void Update()
@@ -29,8 +29,11 @@ public abstract class EntityController : MonoBehaviour
         Move();
     }
 
-    virtual protected void ChooseLocation()
-    {}
+    virtual protected void ChooseLocation(Vector3 _location)
+    { }
+
+    virtual protected void ChooseRandomLocation()
+    { }
 
     protected void CheckTime()
     {

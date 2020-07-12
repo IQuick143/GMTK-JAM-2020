@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        food_tags.Add("Cheese");
+        food_tags.Add("Fries");
         food_tags.Add("Burger");
     }
 
