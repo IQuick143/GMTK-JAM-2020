@@ -40,7 +40,9 @@ public class FoodOTron : MonoBehaviour {
 			ProductModel.transform.SetParent(ProductBox, true);
 			ProductModel.transform.localPosition = Vector3.zero;
 		missing = RequiredItems[0];
-	}
+        FireController.fireAmount = -1.0f;
+
+    }
 	
 	void OnTriggerEnter(Collider other) {
         if (FireController.fireAmount <= 0.0f)
