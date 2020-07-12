@@ -252,6 +252,10 @@ public class CustomerAI : MonoBehaviour {
         }
     }
 
+	public void TimeUp() {
+		this.customer_state = STATE.LEAVING;
+		this.is_ready_for_order = false;
+	}
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(goal, 0.5f);

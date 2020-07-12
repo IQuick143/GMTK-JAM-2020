@@ -19,6 +19,10 @@ public class FoodOTron : MonoBehaviour {
 	private GameObject RequireModel = null;
 	[SerializeField]
 	private Transform ProductBox;
+    [SerializeField]
+    private FireController FireController;
+    [SerializeField]
+    private float fireChance = 0.4f;
 	private bool[] itemsSatisfied;
 	private ItemType missing {
 		set {
@@ -39,30 +43,39 @@ public class FoodOTron : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		Item item = other.GetComponent<Item>();
-		if (item != null) {
-			var type = item.type;
-			for (int i = 0; i < RequiredItems.Length; i++) {
-				if (!itemsSatisfied[i] && type == RequiredItems[i]) {
-					itemsSatisfied[i] = true;
-					break;
-				}
-			}
-			bool makeItem = true;
-			for (int i = 0; i < RequiredItems.Length; i++) {
-				if (!itemsSatisfied[i]) {
-					makeItem = false;
-					missing = RequiredItems[i];
-					break;
-				}
-			}
-			if (makeItem) {
-				StartCoroutine(MakeItems());
-				itemsSatisfied = new bool[RequiredItems.Length];
-				missing = RequiredItems[0];
-			}
-			Destroy(other.gameObject);
-		}
+        if (FireController.fireAmount <= 0.0f)
+        {
+            Item item = other.GetComponent<Item>();
+            if (item != null)
+            {
+                var type = item.type;
+                for (int i = 0; i < RequiredItems.Length; i++)
+                {
+                    if (!itemsSatisfied[i] && type == RequiredItems[i])
+                    {
+                        itemsSatisfied[i] = true;
+                        break;
+                    }
+                }
+                bool makeItem = true;
+                for (int i = 0; i < RequiredItems.Length; i++)
+                {
+                    if (!itemsSatisfied[i])
+                    {
+                        makeItem = false;
+                        missing = RequiredItems[i];
+                        break;
+                    }
+                }
+                if (makeItem)
+                {
+                    StartCoroutine(MakeItems());
+                    itemsSatisfied = new bool[RequiredItems.Length];
+                    missing = RequiredItems[0];
+                }
+                Destroy(other.gameObject);
+            }
+        }
 	}
 
 	private IEnumerator MakeItems() {
@@ -70,5 +83,11 @@ public class FoodOTron : MonoBehaviour {
 			Instantiate(ItemManager.GetPrefab(Product), ItemSpawn.position, Quaternion.identity);
 			yield return new WaitForSeconds(1f / conveyor.speed);
 		}
+
+        float random_chance = UnityEngine.Random.Range(0.0f, 1.0f);
+        if (random_chance < fireChance)
+        {
+            FireController.fireAmount = 75.0f;
+        }
 	}
 }

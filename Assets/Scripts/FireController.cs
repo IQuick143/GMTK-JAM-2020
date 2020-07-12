@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class FireController : MonoBehaviour {
 	[SerializeField]
-	private float fireAmount = 1f;
+	public float fireAmount = 1f;
 	[SerializeField]
 	private float extenguishmentFactor = 0.01f;
 	private ParticleSystem fireSystem;
