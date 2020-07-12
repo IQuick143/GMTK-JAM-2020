@@ -87,6 +87,18 @@ public class CustomerAI : MonoBehaviour
                     break;
                 }
         }
+
+        Angrymeter();
+    }
+
+    private void Angrymeter()
+    {
+        float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
+        foreach (MeshRenderer renderer in modelMeshes)
+        {
+            renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
+        }
+        Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
     }
 
     private void PathfindToDestination(Vector3 _goal,float _power)
@@ -153,24 +165,7 @@ public class CustomerAI : MonoBehaviour
 
         if (hunger > hunger_threshold)
         {
-            GetAngry();
-        }
-    }
-
-    private void GetAngry()
-    {
-        foreach(MeshRenderer renderer in modelMeshes)
-        {
-            renderer.material.color = Color.red;
-        }
-        customer_state = STATE.ANGRY;
-    }
-
-    private void StopGettingAngry()
-    {
-        foreach (MeshRenderer renderer in modelMeshes)
-        {
-            renderer.material.color = Color.white;
+            customer_state = STATE.ANGRY;
         }
     }
 
