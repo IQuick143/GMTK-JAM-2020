@@ -54,7 +54,7 @@ public class RagdollController : MonoBehaviour
 	void FixedUpdate() {
 		//Hold the head up
 		Vector3 HeadTarget = this.transform.position + this.transform.up * this.height;
-		HeadRB.velocity = (HeadTarget - this.Head.position) * 15f;
+		HeadRB.velocity = (HeadTarget - this.Head.position) * 17.5f;
 
 		//Move the legs
 		float walking = this.move.MoveVector.magnitude;

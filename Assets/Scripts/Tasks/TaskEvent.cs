@@ -32,7 +32,7 @@ public class TaskEvent : MonoBehaviour
     void Update()
     {
         current_time += Time.deltaTime;
-        if ((food_orders.Count > 0) && (current_time > cooldown) && customer_ai.GetIsOrderReady())
+        if ((food_orders.Count > 0) && (current_time > cooldown) && customer_ai.is_ready_for_order)
         {
             foreach (var indicators in food_indicators)
             {
