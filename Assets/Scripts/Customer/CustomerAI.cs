@@ -20,8 +20,6 @@ public class CustomerAI : MonoBehaviour {
         DESTROY
 	};
 
-    [SerializeField] private Animator anim;
-
 	[SerializeField] private STATE customer_state = STATE.ENTER;
 
 	private Transform player_transform;
@@ -119,6 +117,7 @@ public class CustomerAI : MonoBehaviour {
 				}
             case STATE.ANGRY:
                 {
+                    path = new NavMeshPath();
                     Angry();
                     break;
                 }
@@ -159,12 +158,10 @@ public class CustomerAI : MonoBehaviour {
 
         if (rigidbody.velocity.magnitude > 1.0f)
         {
-            anim.SetBool("fast", true);
             walkAudioSource.UnPause();
         }
         else
         {
-            anim.SetBool("fast", false);
             walkAudioSource.Pause();
         }
 

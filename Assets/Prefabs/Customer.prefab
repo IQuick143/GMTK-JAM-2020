@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customer_state: 0
   hunger: 0
-  hunger_threshold: 40
+  hunger_threshold: 70
   waitAfterFood: 30
   currentOrder: 0
   orders: 040000000600000005000000
