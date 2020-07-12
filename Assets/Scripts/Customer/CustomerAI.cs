@@ -205,10 +205,8 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col) {
-		Debug.Log("FOO");
 		Item item = col.transform.GetComponent<Item>();
-		if (item != null && item.type == this.currentOrder) {
-		Debug.Log("BAR");
+		if (is_ready_for_order && item != null && item.type == this.currentOrder) {
 			Destroy(col.gameObject);
 			this.was_fed = true;
 			Destroy(foodModel);
