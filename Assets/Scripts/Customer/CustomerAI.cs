@@ -63,7 +63,7 @@ public class CustomerAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		if (was_fed) {
-			customer_state = STATE.FED;
+			customer_state = (customer_state == STATE.ANGRY)?STATE.LEAVING:STATE.FED;
 		}
 
 		switch (customer_state) {
