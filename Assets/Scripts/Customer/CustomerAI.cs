@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class CustomerAI : MonoBehaviour {
 	[Serializable] public enum STATE {
 		ENTER,
@@ -141,17 +143,15 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	private void PathfindToDestination(Vector3 _goal,float _power) {
-		if (path == null) {
+		if (path == null || path.corners.Length == 0) {
 			goal = _goal;
 
 			path = new NavMeshPath();
 			NavMesh.CalculatePath(transform.position, goal, NavMesh.AllAreas, path);
-		}
-		else {
+		} else {
 			if (path.corners.Length > 1) {
 				waypoint = path.corners[1];
-			}
-			else {
+			} else {
 				waypoint = path.corners[0];
 			}
 
