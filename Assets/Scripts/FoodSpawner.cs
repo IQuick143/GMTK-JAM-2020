@@ -4,30 +4,21 @@ using UnityEngine;
 using System;
 
 public class FoodSpawner : MonoBehaviour {
-	[Serializable]
-	public class FoodSpawnpoint {
-		public ItemType food;
-		public Transform spawnpoint;
+	
+	public ItemType food;
+	public Transform spawnpoint;
+	public Transform preview;
+	public float trigger_zone_size;
 
-		public float interval;
-		public float current_time;
+	private GameObject spawnedItem = null;
 
-        public float trigger_zone_size;
+	void Start() {
+		Instantiate(ItemManager.GetModel(food), preview).transform.position = preview.position;
 	}
 
-	[SerializeField] private List<FoodSpawnpoint> spawnpoints = new List<FoodSpawnpoint>();
-
 	void Update() {
-		foreach (var spawnpoint in spawnpoints) {
-			spawnpoint.current_time += Time.deltaTime;
-
-			if (spawnpoint.current_time > spawnpoint.interval) {
-                if (!Physics.CheckSphere(spawnpoint.spawnpoint.position,spawnpoint.trigger_zone_size)) {
-                    Instantiate(ItemManager.GetPrefab(spawnpoint.food), spawnpoint.spawnpoint.position, Quaternion.identity);
-
-                    spawnpoint.current_time = 0.0f;
-                }
-			}
+		if (spawnedItem == null || (spawnedItem.transform.position - spawnpoint.position).magnitude > trigger_zone_size) {
+			spawnedItem = Instantiate(ItemManager.GetPrefab(food), spawnpoint.position, Quaternion.identity);
 		}
 	}
 }
