@@ -14,7 +14,8 @@ public class CustomerAI : MonoBehaviour {
 		DIGESTING,
 		HUNGRY,
 		ANGRY,
-		LEAVING
+		LEAVING,
+        DESTROY
 	};
 
 	[SerializeField] private STATE customer_state = STATE.ENTER;
@@ -103,11 +104,22 @@ public class CustomerAI : MonoBehaviour {
 					StartCoroutine(Digesting());
 					break;
 				}
-			case STATE.ANGRY: {
-					Angry();
-					break;
-				}
-		}
+            case STATE.ANGRY:
+                {
+                    Angry();
+                    break;
+                }
+            case STATE.LEAVING:
+                {
+                    Leaving();
+                    break;
+                }
+            case STATE.DESTROY:
+                {
+                    Destroy(gameObject);
+                    break;
+                }
+        }
 		if (bounce_cooldown > 0.0f) {
             bounce_cooldown -= Time.deltaTime;
         }
@@ -221,6 +233,19 @@ public class CustomerAI : MonoBehaviour {
         {
             audioSource.PlayOneShot(bumpSFX);
             bounce_cooldown = bounce_sound_interval;
+        }
+    }
+
+    private void Leaving()
+    {
+        // Search for table
+        GameObject exit_point = GameObject.FindGameObjectWithTag("Exit");
+
+        PathfindToDestination(exit_point.transform.position, 6.0f);
+
+        if (Vector3.Distance(transform.position, goal) < 3.0f)
+        {
+            customer_state = STATE.DESTROY;
         }
     }
 }
