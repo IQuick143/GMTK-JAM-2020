@@ -44,7 +44,8 @@ public class CustomerAI : MonoBehaviour {
     // Audio stuff
     public AudioClip bumpSFX;
     public AudioClip bellSFX;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource walkAudioSource;
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
 
@@ -55,7 +56,6 @@ public class CustomerAI : MonoBehaviour {
 	void Start() {
 		player_transform = GameObject.FindGameObjectWithTag("Player").transform;
 		rigidbody = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
     }
 
 	// Update is called once per frame
@@ -107,7 +107,18 @@ public class CustomerAI : MonoBehaviour {
         {
             bounce_cooldown -= Time.deltaTime;
         }
-	}
+
+        if (rigidbody.velocity.magnitude > 1.0f)
+        {
+
+            walkAudioSource.UnPause();
+        }
+        else
+        {
+            walkAudioSource.Pause();
+        }
+
+    }
 
 	private IEnumerator Digesting() {
 		yield return new WaitForSeconds(waitAfterFood);
