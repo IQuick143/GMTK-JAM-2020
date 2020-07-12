@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customer: {fileID: 7559124860717967338, guid: fc25af423ba86c44da5548e241c326f1,
     type: 3}
-  start_period: 20
-  interval: 4
+  start_period: 30
+  interval: 25
