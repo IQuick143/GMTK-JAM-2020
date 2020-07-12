@@ -41,14 +41,21 @@ public class CustomerAI : MonoBehaviour {
 	[SerializeField] private Transform indicator;
 	private GameObject foodModel;
 
-	public void AteFoodOrder() {
+    // Audio stuff
+    public AudioClip bumpSFX;
+    private AudioSource audioSource;
+    float bounce_cooldown = 0.0f;
+    [SerializeField] private float bounce_sound_interval;
+
+    public void AteFoodOrder() {
 		was_fed = true;
 	}
 	// Start is called before the first frame update
 	void Start() {
 		player_transform = GameObject.FindGameObjectWithTag("Player").transform;
 		rigidbody = GetComponent<Rigidbody>();
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 
 	// Update is called once per frame
 	void Update() {
@@ -93,6 +100,11 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 		}
+
+        if (bounce_cooldown > 0.0f)
+        {
+            bounce_cooldown -= Time.deltaTime;
+        }
 	}
 
 	private IEnumerator Digesting() {
@@ -173,5 +185,16 @@ public class CustomerAI : MonoBehaviour {
 			this.was_fed = true;
 			Destroy(foodModel);
 		}
-	}
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if ((col.transform.CompareTag("Player")) && (bounce_cooldown <= 0.0f))
+        {
+            audioSource.PlayOneShot(bumpSFX);
+            bounce_cooldown = bounce_sound_interval;
+        }
+    }
 }
