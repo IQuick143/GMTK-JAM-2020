@@ -36,7 +36,7 @@ public class CustomerAI : MonoBehaviour {
 	public bool is_ready_for_order {private set; get;}
 	private bool was_fed = false;
 
-	[SerializeField] private float waitAfterFood = 10.0f;
+	[SerializeField] private float waitAfterFood = 20.0f;
 
 	private int food_eaten = 0;
 	[SerializeField] private ItemType currentOrder;
