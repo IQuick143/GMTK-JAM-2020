@@ -187,9 +187,11 @@ public class CustomerAI : MonoBehaviour {
 
 	private void FindSeat() {
 		// Search for table
-		GameObject table = GameObject.FindGameObjectWithTag("Table");
+		GameObject[] table = GameObject.FindGameObjectsWithTag("Table");
 
-		PathfindToDestination(table.transform.position, 6.0f);
+        int selected_table = UnityEngine.Random.Range(0, table.Length);
+
+		PathfindToDestination(table[selected_table].transform.position, 6.0f);
 
 		if (Vector3.Distance(transform.position,goal) < 3.0f) {
 			customer_state = STATE.WAIT_FOR_FOOD;
