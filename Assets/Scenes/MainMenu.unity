@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start_button: {fileID: 1109192598}
-  start_scene_name: 
+  start_scene_name: FinalScene
   quit_button: {fileID: 1247051198}
 --- !u!4 &236572991
 Transform:
