@@ -1239,36 +1239,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: minPoint.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: minPoint.y
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: maxPoint.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: maxPoint.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: chooseLocationTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: forcePower
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7559124860717967338, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
       propertyPath: m_Name
@@ -1329,13 +1299,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7559124860717967342, guid: fc25af423ba86c44da5548e241c326f1,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc25af423ba86c44da5548e241c326f1, type: 3}
 --- !u!1 &224776350
 GameObject:
@@ -2176,6 +2140,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3446249253184118345, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 501e7411316e6e447a41c0e175fd40cd, type: 2}
+    - target: {fileID: 3446249253184118345, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 501e7411316e6e447a41c0e175fd40cd, type: 2}
     - target: {fileID: 6293800750585787729, guid: fc25af423ba86c44da5548e241c326f1,
         type: 3}
       propertyPath: minPoint.x
@@ -6893,7 +6867,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 501e7411316e6e447a41c0e175fd40cd, type: 2}
+  - {fileID: 0}
   - {fileID: 2100000, guid: b491421df00e2fe49b77a9089a21a0b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
