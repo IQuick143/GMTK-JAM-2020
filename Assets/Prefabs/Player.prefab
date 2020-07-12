@@ -163,7 +163,7 @@ MonoBehaviour:
   legWidth: 0.8
   stepLength: 1
   legSpeedMultiplier: 1.9
-  TorsoTorque: 15
+  TorsoTorque: 20
 --- !u!1 &6217297212936799238
 GameObject:
   m_ObjectHideFlags: 0

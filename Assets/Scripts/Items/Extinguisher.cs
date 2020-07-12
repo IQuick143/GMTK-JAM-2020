@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Extinguisher : MonoBehaviour {
-	// Start is called before the first frame update
-	void Start() {
-		
-	}
+	[SerializeField]
+	private Item item;
+	[SerializeField]
+	private new ParticleSystem particleSystem;
 
-	// Update is called once per frame
 	void Update() {
-		
+		var emission = particleSystem.emission;
+		emission.enabled = item.held;
 	}
 }
