@@ -60,7 +60,11 @@ public class CustomerAI : MonoBehaviour {
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
 
+	private UIManager uiManager;
+	private float goodOrderScore = 2000;
+
     public void AteFoodOrder() {
+		uiManager.Score += goodOrderScore;
 		was_fed = true;
 	}
 
