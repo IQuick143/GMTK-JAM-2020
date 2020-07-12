@@ -514,7 +514,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Product: 0
+  ProductCount: 1
   RequiredItems: 01000000
+  conveyor: {fileID: 1206143243177182054}
   ItemSpawn: {fileID: 4449505965325782238}
   RequireBox: {fileID: 1206143244077418754}
   ProductBox: {fileID: 1206143244429603364}

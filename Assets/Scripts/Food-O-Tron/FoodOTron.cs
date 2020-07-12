@@ -7,7 +7,11 @@ public class FoodOTron : MonoBehaviour {
 	[SerializeField]
 	private ItemType Product;
 	[SerializeField]
+	private int ProductCount = 1;
+	[SerializeField]
 	private ItemType[] RequiredItems;
+	[SerializeField]
+	private Conveyor conveyor;
 	[SerializeField]
 	private Transform ItemSpawn;
 	[SerializeField]
@@ -53,11 +57,18 @@ public class FoodOTron : MonoBehaviour {
 				}
 			}
 			if (makeItem) {
-				Instantiate(ItemManager.GetPrefab(Product), ItemSpawn.position, Quaternion.identity);
+				StartCoroutine(MakeItems());
 				itemsSatisfied = new bool[RequiredItems.Length];
 				missing = RequiredItems[0];
 			}
 			Destroy(other.gameObject);
+		}
+	}
+
+	private IEnumerator MakeItems() {
+		for (int i = 0; i < ProductCount; i++) {
+			Instantiate(ItemManager.GetPrefab(Product), ItemSpawn.position, Quaternion.identity);
+			yield return new WaitForSeconds(1f / conveyor.speed);
 		}
 	}
 }

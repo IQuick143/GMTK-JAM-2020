@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Conveyor : MonoBehaviour {
 	[SerializeField]
-	private float speed = 1f;
+	public float speed = 1f;
 	
 	void OnTriggerStay(Collider other) {
 		Item item = other.GetComponent<Item>();
