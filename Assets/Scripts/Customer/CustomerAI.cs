@@ -43,6 +43,12 @@ public class CustomerAI : MonoBehaviour {
 	private SkinnedMeshRenderer[] modelMeshes;
 
 	private UIManager uiManager;
+	
+	// Audio stuff
+    public AudioClip bumpSFX;
+    private AudioSource audioSource;
+    float bounce_cooldown = 0.0f;
+    [SerializeField] private float bounce_sound_interval;
 
 	public void AteFoodOrder() {
 		was_fed = true;
@@ -55,12 +61,13 @@ public class CustomerAI : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody>();
 		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
 		uiManager = FindObjectOfType<UIManager>();
+        audioSource = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
 	void Update() {
 		if (was_fed) {
-			customer_state = STATE.FED;
+			customer_state = (customer_state == STATE.ANGRY)?STATE.LEAVING:STATE.FED;
 		}
 
 		switch (customer_state) {
@@ -100,6 +107,9 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 		}
+		if (bounce_cooldown > 0.0f) {
+            bounce_cooldown -= Time.deltaTime;
+        }
         Angrymeter();
     }
 
@@ -197,5 +207,16 @@ public class CustomerAI : MonoBehaviour {
 			this.was_fed = true;
 			Destroy(foodModel);
 		}
-	}
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if ((col.transform.CompareTag("Player")) && (bounce_cooldown <= 0.0f))
+        {
+            audioSource.PlayOneShot(bumpSFX);
+            bounce_cooldown = bounce_sound_interval;
+        }
+    }
 }
