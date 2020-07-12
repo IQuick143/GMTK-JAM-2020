@@ -7,6 +7,7 @@ public class CustomerAnimation : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     public float velocityThreshold = 1f;
+    public float torqueFoce = 1f;
 
     void Start()
     {
@@ -16,13 +17,14 @@ public class CustomerAnimation : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity.magnitude < velocityThreshold)
-        {
-            anim.SetBool("fast", false);
-        }
-        else
-        {
-            anim.SetBool("fast", true);
-        }
+        //if (rb.velocity.magnitude < velocityThreshold)
+        //{
+            this.transform.LookAt(rb.velocity.normalized, Vector3.up);
+        //    anim.SetBool("fast", false);
+        //}
+        //else
+        //{
+        //    anim.SetBool("fast", true);
+        //}
     }
 }
