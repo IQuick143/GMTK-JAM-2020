@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7853269803705818671}
   - component: {fileID: 3794461049874342997}
   - component: {fileID: 3067736589299001826}
+  - component: {fileID: 6888173409299815621}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6888173409299815621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847121182347239511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0112354355, y: 0.014801937, z: 0.023842275}
+  m_Center: {x: -0.000000014903618, y: -0.018145457, z: -0.00010588815}
 --- !u!1 &7817979285125255715
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +277,7 @@ GameObject:
   - component: {fileID: 7817979286542072003}
   - component: {fileID: 7817979286542072001}
   - component: {fileID: 7817979286542072002}
+  - component: {fileID: 8331465567731782501}
   m_Layer: 0
   m_Name: Chair (1)
   m_TagString: Untagged
@@ -331,6 +346,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8331465567731782501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817979286542072028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011235438, y: 0.01480194, z: 0.023842283}
+  m_Center: {x: 0.000000008541072, y: -0.01814546, z: -0.000105889325}
 --- !u!1 &7817979286938692333
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +370,7 @@ GameObject:
   - component: {fileID: 7817979286938692332}
   - component: {fileID: 7817979286938692306}
   - component: {fileID: 7817979286938692307}
+  - component: {fileID: 6183810392629333442}
   m_Layer: 0
   m_Name: Chair (2)
   m_TagString: Untagged
@@ -410,6 +439,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6183810392629333442
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817979286938692333}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011235436, y: 0.014801938, z: 0.023842277}
+  m_Center: {x: -0.000000015436497, y: -0.018145462, z: -0.00010588694}
 --- !u!1 &7817979287047582980
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +463,7 @@ GameObject:
   - component: {fileID: 7817979287047582987}
   - component: {fileID: 7817979287047582985}
   - component: {fileID: 7817979287047582986}
+  - component: {fileID: 8818801745433661284}
   m_Layer: 0
   m_Name: Chair (3)
   m_TagString: Untagged
@@ -489,6 +532,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8818801745433661284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817979287047582980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011235436, y: 0.014801938, z: 0.023842275}
+  m_Center: {x: 0.000000015981893, y: -0.018145474, z: -0.00010588937}
 --- !u!1 &8459505365757598993
 GameObject:
   m_ObjectHideFlags: 0
