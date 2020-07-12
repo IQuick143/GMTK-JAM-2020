@@ -5,7 +5,17 @@ using UnityEngine.AI;
 using System;
 
 public class CustomerAI : MonoBehaviour {
-	[Serializable] public enum STATE { ENTER,FIND_SEAT,WAITING_FOOD,FED,HUNGRY,ANGRY,LEAVING};
+	[Serializable] public enum STATE {
+		ENTER,
+		FIND_SEAT,
+		WAIT_FOR_FOOD,
+		WAITING_FOOD,
+		FED,
+		DIGESTING,
+		HUNGRY,
+		ANGRY,
+		LEAVING
+	};
 
 	[SerializeField] private STATE customer_state = STATE.ENTER;
 
@@ -20,15 +30,16 @@ public class CustomerAI : MonoBehaviour {
 	[SerializeField] private float hunger = 0.0f;
 	[SerializeField] private float hunger_threshold = 15.0f;
 
-	private bool is_ready_for_order = false;
+	public bool is_ready_for_order {private set; get;}
 	private bool was_fed = false;
 
-	private int food_eaten = 0;
-	[SerializeField] private int max_food = 3;
+	[SerializeField] private float waitAfterFood = 10.0f;
 
-	public bool GetIsOrderReady() {
-		return is_ready_for_order;
-	}
+	private int food_eaten = 0;
+	[SerializeField] private ItemType currentOrder;
+	[SerializeField] private List<ItemType> orders = new List<ItemType>();
+	[SerializeField] private Transform indicator;
+	private GameObject foodModel;
 
 	public void AteFoodOrder() {
 		was_fed = true;
@@ -54,12 +65,27 @@ public class CustomerAI : MonoBehaviour {
 					FindSeat();
 					break;
 				}
+			case STATE.WAIT_FOR_FOOD: {
+					if (orders.Count > 0) {
+						currentOrder = orders[0];
+						orders.RemoveAt(0);
+						hunger = 0;
+						customer_state = STATE.WAITING_FOOD;
+						if (foodModel != null) Destroy(foodModel);
+						foodModel = Instantiate(ItemManager.GetModel(currentOrder), indicator);
+					} else {
+						customer_state = STATE.LEAVING;
+					}
+					break;
+				}
 			case STATE.WAITING_FOOD: {
 					WaitForFood();
 					break;
 				}
 			case STATE.FED: {
-					Fed();
+					this.customer_state = STATE.DIGESTING;
+					this.was_fed = false;
+					StartCoroutine(Digesting());
 					break;
 				}
 			case STATE.ANGRY: {
@@ -67,6 +93,11 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 		}
+	}
+
+	private IEnumerator Digesting() {
+		yield return new WaitForSeconds(waitAfterFood);
+		this.customer_state = STATE.WAIT_FOR_FOOD;
 	}
 
 	private void PathfindToDestination(Vector3 _goal,float _power) {
@@ -104,10 +135,10 @@ public class CustomerAI : MonoBehaviour {
 		// Search for table
 		GameObject table = GameObject.FindGameObjectWithTag("Table");
 
-		PathfindToDestination(table.transform.position,6.0f);
+		PathfindToDestination(table.transform.position, 6.0f);
 
 		if (Vector3.Distance(transform.position,goal) < 3.0f) {
-			customer_state = STATE.WAITING_FOOD;
+			customer_state = STATE.WAIT_FOR_FOOD;
 		}
 	}
 
@@ -125,26 +156,22 @@ public class CustomerAI : MonoBehaviour {
 		}
 	}
 
-	private void Fed() {
-		hunger = 0.0f;
-		was_fed = false;
-		is_ready_for_order = false;
-
-		food_eaten++;
-
-		if (food_eaten > max_food) {
-			customer_state = STATE.LEAVING;
-		}
-		else {
-			customer_state = STATE.FIND_SEAT;
-		}
-	}
-
 	private void Angry() {
 		rigidbody.drag = 0.0f;
 
 		Vector3 move_direction = (player_transform.position - rigidbody.transform.position).normalized;
 
 		rigidbody.AddForce(move_direction * Time.deltaTime * (700.0f * rigidbody.mass));
+	}
+
+	void OnCollisionEnter(Collision col) {
+		Debug.Log("FOO");
+		Item item = col.transform.GetComponent<Item>();
+		if (item != null && item.type == this.currentOrder) {
+		Debug.Log("BAR");
+			Destroy(col.gameObject);
+			this.was_fed = true;
+			Destroy(foodModel);
+		}
 	}
 }

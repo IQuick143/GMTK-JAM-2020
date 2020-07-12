@@ -1170,6 +1170,26 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7963284474457052809, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: orders.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963284474457052809, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: orders.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963284474457052809, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: orders.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963284474457052809, guid: fc25af423ba86c44da5548e241c326f1,
+        type: 3}
+      propertyPath: orders.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc25af423ba86c44da5548e241c326f1, type: 3}
 --- !u!1001 &1050654572
@@ -2335,6 +2355,16 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnpoints.Array.data[0].interval
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8288998357790812861, guid: 27aeb8bfdb0fdd244b844cd815a50f29,
+        type: 3}
+      propertyPath: spawnpoints.Array.data[0].food
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8288998357790812861, guid: 27aeb8bfdb0fdd244b844cd815a50f29,
+        type: 3}
+      propertyPath: spawnpoints.Array.data[1].food
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27aeb8bfdb0fdd244b844cd815a50f29, type: 3}
