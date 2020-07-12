@@ -6,7 +6,7 @@ public class CustomerAnimation : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody rb;
-    public float velocityThreshold;
+    public float velocityThreshold = 1f;
 
     void Start()
     {

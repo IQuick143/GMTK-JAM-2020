@@ -46,8 +46,7 @@ public class CustomerAI : MonoBehaviour
 
         //TODO: Change the name of the model when we get the new customer model
         modelMeshes = new MeshRenderer[] {
-            transform.Find("Model/Face").GetComponent<MeshRenderer>(),
-            transform.Find("Model/Body").GetComponent<MeshRenderer>()
+            transform.Find("Model/Character").GetComponent<MeshRenderer>(),
         };
     }
 
