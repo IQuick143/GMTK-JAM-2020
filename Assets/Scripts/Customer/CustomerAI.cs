@@ -20,6 +20,8 @@ public class CustomerAI : MonoBehaviour {
         DESTROY
 	};
 
+    [SerializeField] private Animator anim;
+
 	[SerializeField] private STATE customer_state = STATE.ENTER;
 
 	private Transform player_transform;
@@ -32,7 +34,9 @@ public class CustomerAI : MonoBehaviour {
 	private Vector3 goal;
 	private Vector3 waypoint;
 
-	[SerializeField] private float hunger = 0.0f;
+    private Quaternion rotation;
+
+    [SerializeField] private float hunger = 0.0f;
 	[SerializeField] private float hunger_threshold = 15.0f;
 
 	public bool is_ready_for_order {private set; get;}
@@ -129,6 +133,15 @@ public class CustomerAI : MonoBehaviour {
             bounce_cooldown -= Time.deltaTime;
         }
         Angrymeter();
+
+        if (rigidbody.velocity.magnitude > 0.1f)
+        {
+            rotation = Quaternion.LookRotation(rigidbody.velocity, transform.up);
+            rotation.x = 0.0f;
+            rotation.z = 0.0f;
+            rigidbody.transform.rotation = rotation;
+        }
+
     }
 
     private void Angrymeter()
@@ -142,11 +155,12 @@ public class CustomerAI : MonoBehaviour {
 
         if (rigidbody.velocity.magnitude > 1.0f)
         {
-
+            anim.SetBool("fast", true);
             walkAudioSource.UnPause();
         }
         else
         {
+            anim.SetBool("fast", false);
             walkAudioSource.Pause();
         }
 
