@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update() {
         elapsed += Time.deltaTime;
-		Sun.intensity = SunBrightness.Evaluate(elapsed / 60);
+		if (Sun != null) Sun.intensity = SunBrightness.Evaluate(elapsed / 60);
 		timer.text = GetTime(elapsed, 2, 0) + " PM\nClosing at: "+GetTime(endTime, 2, 0)+" PM";
 		if (elapsed >= endTime) {
 			TimeUp();
