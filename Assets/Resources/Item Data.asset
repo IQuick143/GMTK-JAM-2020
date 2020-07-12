@@ -37,8 +37,9 @@ MonoBehaviour:
       type: 3}
     Model: {fileID: 1172448153242539714, guid: b809ab1ea3cc7c14195b51741a5d531f, type: 3}
   - Key: 2
-    Prefab: {fileID: 0}
-    Model: {fileID: 0}
+    Prefab: {fileID: 2916993469951356168, guid: bc98463b382d8d74d8fc0754ca00ff29,
+      type: 3}
+    Model: {fileID: 6694489127399937426, guid: a32f02f7093932e46886489e5fcc8c2f, type: 3}
   - Key: 7
     Prefab: {fileID: 7270961553813696981, guid: d820865db67198144bcd475f12f8c49e,
       type: 3}
