@@ -41,6 +41,7 @@ public class CustomerAI : MonoBehaviour {
 	[SerializeField] private Transform indicator;
 	private GameObject foodModel;
 
+	private SkinnedMeshRenderer[] modelMeshes;
 	public void AteFoodOrder() {
 		was_fed = true;
 	}
@@ -48,6 +49,7 @@ public class CustomerAI : MonoBehaviour {
 	void Start() {
 		player_transform = GameObject.FindGameObjectWithTag("Player").transform;
 		rigidbody = GetComponent<Rigidbody>();
+		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
 	}
 
 	// Update is called once per frame
@@ -99,7 +101,7 @@ public class CustomerAI : MonoBehaviour {
     private void Angrymeter()
     {
         float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
-        foreach (MeshRenderer renderer in modelMeshes)
+        foreach (SkinnedMeshRenderer renderer in modelMeshes)
         {
             renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
         }
