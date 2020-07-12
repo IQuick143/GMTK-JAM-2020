@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class CustomerAI : MonoBehaviour {
 	[Serializable] public enum STATE {
 		ENTER,
@@ -46,7 +48,10 @@ public class CustomerAI : MonoBehaviour {
 	
 	// Audio stuff
     public AudioClip bumpSFX;
-    private AudioSource audioSource;
+    public AudioClip bellSFX;
+    public AudioClip orderCompleteSFX;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource walkAudioSource;
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
 
@@ -68,6 +73,7 @@ public class CustomerAI : MonoBehaviour {
 	void Update() {
 		if (was_fed) {
 			customer_state = (customer_state == STATE.ANGRY)?STATE.LEAVING:STATE.FED;
+			this.was_fed = false;
 		}
 
 		switch (customer_state) {
@@ -84,6 +90,7 @@ public class CustomerAI : MonoBehaviour {
 						currentOrder = orders[0];
 						orders.RemoveAt(0);
 						hunger = 0;
+                        audioSource.PlayOneShot(bellSFX);
 						customer_state = STATE.WAITING_FOOD;
 						if (foodModel != null) Destroy(foodModel);
 						foodModel = Instantiate(ItemManager.GetModel(currentOrder), indicator);
@@ -98,7 +105,7 @@ public class CustomerAI : MonoBehaviour {
 				}
 			case STATE.FED: {
 					this.customer_state = STATE.DIGESTING;
-					this.was_fed = false;
+                    audioSource.PlayOneShot(orderCompleteSFX);
 					StartCoroutine(Digesting());
 					break;
 				}
@@ -121,6 +128,17 @@ public class CustomerAI : MonoBehaviour {
             renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
         }
         Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
+
+        if (rigidbody.velocity.magnitude > 1.0f)
+        {
+
+            walkAudioSource.UnPause();
+        }
+        else
+        {
+            walkAudioSource.Pause();
+        }
+
     }
 
 	private IEnumerator Digesting() {
@@ -129,17 +147,15 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	private void PathfindToDestination(Vector3 _goal,float _power) {
-		if (path == null) {
+		if (path == null || path.corners.Length == 0) {
 			goal = _goal;
 
 			path = new NavMeshPath();
 			NavMesh.CalculatePath(transform.position, goal, NavMesh.AllAreas, path);
-		}
-		else {
+		} else {
 			if (path.corners.Length > 1) {
 				waypoint = path.corners[1];
-			}
-			else {
+			} else {
 				waypoint = path.corners[0];
 			}
 
@@ -199,10 +215,9 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col) {
-		Debug.Log("FOO");
 		Item item = col.transform.GetComponent<Item>();
-		if (item != null && item.type == this.currentOrder) {
-			Debug.Log("BAR");
+		
+		if (is_ready_for_order && item != null && item.type == this.currentOrder) {
 			Destroy(col.gameObject);
 			this.was_fed = true;
 			Destroy(foodModel);
