@@ -259,6 +259,7 @@ MonoBehaviour:
   indicator: {fileID: 5683595122126695876}
   bumpSFX: {fileID: 8300000, guid: 79d0970b883aff941b3499b2afc41ec2, type: 3}
   bellSFX: {fileID: 8300000, guid: d3390eb42def58448a80eadc8fd0b2d4, type: 3}
+  orderCompleteSFX: {fileID: 8300000, guid: 473c6316d76db6842b6444859c160134, type: 3}
   audioSource: {fileID: 2388958008996146175}
   walkAudioSource: {fileID: 3116203738314970653}
   bounce_sound_interval: 1

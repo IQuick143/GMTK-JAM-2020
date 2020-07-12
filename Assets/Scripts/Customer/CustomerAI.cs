@@ -44,6 +44,7 @@ public class CustomerAI : MonoBehaviour {
     // Audio stuff
     public AudioClip bumpSFX;
     public AudioClip bellSFX;
+    public AudioClip orderCompleteSFX;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource walkAudioSource;
     float bounce_cooldown = 0.0f;
@@ -94,6 +95,7 @@ public class CustomerAI : MonoBehaviour {
 			case STATE.FED: {
 					this.customer_state = STATE.DIGESTING;
 					this.was_fed = false;
+                    audioSource.PlayOneShot(orderCompleteSFX);
 					StartCoroutine(Digesting());
 					break;
 				}
