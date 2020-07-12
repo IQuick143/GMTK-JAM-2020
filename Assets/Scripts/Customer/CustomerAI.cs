@@ -27,6 +27,8 @@ public class CustomerAI : MonoBehaviour
     private int food_eaten = 0;
     [SerializeField] private int max_food = 3;
 
+    private MeshRenderer[] modelMeshes;
+
     public bool GetIsOrderReady()
     {
         return is_ready_for_order;
@@ -41,6 +43,12 @@ public class CustomerAI : MonoBehaviour
     {
         player_transform = GameObject.FindGameObjectWithTag("Player").transform;
         rigidbody = GetComponent<Rigidbody>();
+
+        //TODO: Change the name of the model when we get the new customer model
+        modelMeshes = new MeshRenderer[] {
+            transform.Find("Model/Face").GetComponent<MeshRenderer>(),
+            transform.Find("Model/Body").GetComponent<MeshRenderer>()
+        };
     }
 
     // Update is called once per frame
@@ -145,7 +153,24 @@ public class CustomerAI : MonoBehaviour
 
         if (hunger > hunger_threshold)
         {
-            customer_state = STATE.ANGRY;
+            GetAngry();
+        }
+    }
+
+    private void GetAngry()
+    {
+        foreach(MeshRenderer renderer in modelMeshes)
+        {
+            renderer.material.color = Color.red;
+        }
+        customer_state = STATE.ANGRY;
+    }
+
+    private void StopGettingAngry()
+    {
+        foreach (MeshRenderer renderer in modelMeshes)
+        {
+            renderer.material.color = Color.white;
         }
     }
 
