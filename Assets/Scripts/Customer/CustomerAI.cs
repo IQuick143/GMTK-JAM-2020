@@ -42,7 +42,7 @@ public class CustomerAI : MonoBehaviour {
 
 	private int food_eaten = 0;
 	[SerializeField] private ItemType currentOrder;
-	[SerializeField] private List<ItemType> orders = new List<ItemType>();
+	public List<ItemType> orders = new List<ItemType>();
 	[SerializeField] private Transform indicator;
 	private GameObject foodModel;
 	private SkinnedMeshRenderer[] modelMeshes;

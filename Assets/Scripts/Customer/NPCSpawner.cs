@@ -26,18 +26,25 @@ public class NPCSpawner : MonoBehaviour
             {
                 is_first = false;
                 current_time = 0.0f;
-                Instantiate(customer, transform.position, new Quaternion());
+                var cust = Instantiate(customer, transform.position, new Quaternion()).GetComponent<CustomerAI>();
+				cust.orders = new List<ItemType>() {ItemType.Steak, ItemType.Steak, ItemType.Steak, ItemType.Donut};
             }
         }
         else
         {
             if (current_time > interval)
             {
-                current_time = 0.0f;
-                Instantiate(customer, transform.position, new Quaternion());
+				if (Resources.FindObjectsOfTypeAll<CustomerAI>().Length < 3) {
+					current_time = 0.0f;
+					var cust =  Instantiate(customer, transform.position, new Quaternion()).GetComponent<CustomerAI>();
+					cust.orders = new List<ItemType>() {};
+					for (int i = 0; i < Random.Range(2, 5); i++) {
+						cust.orders.Add(
+							new ItemType[] {ItemType.Steak, ItemType.Donut, ItemType.Burger}[Random.Range(0, 3)]
+						);
+					}
+				}
             }
         }
-
-
     }
 }
