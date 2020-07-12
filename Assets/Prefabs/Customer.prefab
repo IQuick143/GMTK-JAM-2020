@@ -257,6 +257,7 @@ MonoBehaviour:
   orders: 
   indicator: {fileID: 5683595122126695876}
   bumpSFX: {fileID: 8300000, guid: 79d0970b883aff941b3499b2afc41ec2, type: 3}
+  bellSFX: {fileID: 8300000, guid: d3390eb42def58448a80eadc8fd0b2d4, type: 3}
   bounce_sound_interval: 1
 --- !u!82 &2388958008996146175
 AudioSource:

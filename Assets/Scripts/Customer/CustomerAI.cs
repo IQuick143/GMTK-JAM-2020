@@ -43,6 +43,7 @@ public class CustomerAI : MonoBehaviour {
 
     // Audio stuff
     public AudioClip bumpSFX;
+    public AudioClip bellSFX;
     private AudioSource audioSource;
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
@@ -77,6 +78,7 @@ public class CustomerAI : MonoBehaviour {
 						currentOrder = orders[0];
 						orders.RemoveAt(0);
 						hunger = 0;
+                        audioSource.PlayOneShot(bellSFX);
 						customer_state = STATE.WAITING_FOOD;
 						if (foodModel != null) Destroy(foodModel);
 						foodModel = Instantiate(ItemManager.GetModel(currentOrder), indicator);
