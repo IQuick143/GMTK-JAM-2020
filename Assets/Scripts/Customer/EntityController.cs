@@ -12,14 +12,10 @@ public abstract class EntityController : MonoBehaviour
 
     public float forcePower;
 
-    public AudioClip bumpSFX;
-    private AudioSource audioSource;
-
     protected void Start()
     {
         currTime = lastChooseTime = 0f;
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         //ChooseLocation();
     }
 
@@ -56,13 +52,5 @@ public abstract class EntityController : MonoBehaviour
     {
         Vector3 dir = (targetLocation - transform.position).normalized;
         rb.AddForce(dir * forcePower);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            audioSource.PlayOneShot(bumpSFX);
-        }
     }
 }

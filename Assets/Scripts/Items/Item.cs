@@ -6,11 +6,12 @@ using UnityEngine;
 public enum ItemType {
 	Extinguisher,
 	PerfectlyGenericObject,
-	Cheese,
+	Dough,
 	Donut,
 	Burger,
 	Potato,
-	Fries
+	Fries,
+	Steak
 }
 
 // Handle an item object
