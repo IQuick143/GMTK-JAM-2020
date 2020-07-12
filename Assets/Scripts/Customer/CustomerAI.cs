@@ -40,9 +40,8 @@ public class CustomerAI : MonoBehaviour {
 	[SerializeField] private List<ItemType> orders = new List<ItemType>();
 	[SerializeField] private Transform indicator;
 	private GameObject foodModel;
-	private MeshRenderer[] modelMeshes;
-
 	private SkinnedMeshRenderer[] modelMeshes;
+
 	public void AteFoodOrder() {
 		was_fed = true;
 	}
@@ -177,14 +176,6 @@ public class CustomerAI : MonoBehaviour {
 		Vector3 move_direction = (player_transform.position - rigidbody.transform.position).normalized;
 
 		rigidbody.AddForce(move_direction * Time.deltaTime * (700.0f * rigidbody.mass));
-	}
-
-	private void Angrymeter() {
-		float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
-		foreach (MeshRenderer renderer in modelMeshes) {
-			renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
-		}
-		Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
 	}
 
 	void OnCollisionEnter(Collision col) {
