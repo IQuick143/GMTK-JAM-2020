@@ -11,6 +11,8 @@ public class FoodSpawner : MonoBehaviour {
 
 		public float interval;
 		public float current_time;
+
+        public float trigger_zone_size;
 	}
 
 	[SerializeField] private List<FoodSpawnpoint> spawnpoints = new List<FoodSpawnpoint>();
@@ -20,9 +22,11 @@ public class FoodSpawner : MonoBehaviour {
 			spawnpoint.current_time += Time.deltaTime;
 
 			if (spawnpoint.current_time > spawnpoint.interval) {
-				Instantiate(ItemManager.GetPrefab(spawnpoint.food), spawnpoint.spawnpoint.position, Quaternion.identity);
+                if (!Physics.CheckSphere(spawnpoint.spawnpoint.position,spawnpoint.trigger_zone_size)) {
+                    Instantiate(ItemManager.GetPrefab(spawnpoint.food), spawnpoint.spawnpoint.position, Quaternion.identity);
 
-				spawnpoint.current_time = 0.0f;
+                    spawnpoint.current_time = 0.0f;
+                }
 			}
 		}
 	}
