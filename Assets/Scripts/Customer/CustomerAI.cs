@@ -42,8 +42,11 @@ public class CustomerAI : MonoBehaviour {
 	private GameObject foodModel;
 	private SkinnedMeshRenderer[] modelMeshes;
 
+	private UIManager uiManager;
+
 	public void AteFoodOrder() {
 		was_fed = true;
+		uiManager.Score += UIManager.customerAtePoints;
 	}
 
 	// Start is called before the first frame update
@@ -51,6 +54,7 @@ public class CustomerAI : MonoBehaviour {
 		player_transform = GameObject.FindGameObjectWithTag("Player").transform;
 		rigidbody = GetComponent<Rigidbody>();
 		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
+		uiManager = FindObjectOfType<UIManager>();
 	}
 
 	// Update is called once per frame
@@ -166,8 +170,14 @@ public class CustomerAI : MonoBehaviour {
 		hunger += Time.deltaTime;
 
 		if (hunger > hunger_threshold) {
-			customer_state = STATE.ANGRY;
+			GetAngry();
 		}
+	}
+
+	private void GetAngry()
+	{
+		customer_state = STATE.ANGRY;
+		uiManager.Score += UIManager.customerAngryPoints;
 	}
 
 	private void Angry() {
@@ -182,7 +192,7 @@ public class CustomerAI : MonoBehaviour {
 		Debug.Log("FOO");
 		Item item = col.transform.GetComponent<Item>();
 		if (item != null && item.type == this.currentOrder) {
-		Debug.Log("BAR");
+			Debug.Log("BAR");
 			Destroy(col.gameObject);
 			this.was_fed = true;
 			Destroy(foodModel);

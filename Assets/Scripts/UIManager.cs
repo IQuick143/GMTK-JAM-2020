@@ -13,6 +13,22 @@ public class UIManager : MonoBehaviour
     public Text timeText;
 
     private float currTime = 0f;
+    private float score = 0f;
+    [HideInInspector] public const  float customerAngryPoints = -3000;
+    [HideInInspector] public const  float customerAtePoints = 2000;
+
+    public float Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            scoreText.text = "SCORE: " + score.ToString();
+        }
+    }
 
     void Update()
     {
