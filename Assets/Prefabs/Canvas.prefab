@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 8904736104710118794}
   - component: {fileID: 8904736104710118796}
   - component: {fileID: 8904736104710118795}
+  - component: {fileID: 3534574690155855617}
   m_Layer: 5
   m_Name: TimeLeftText
   m_TagString: Untagged
@@ -156,6 +157,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Time:'
+--- !u!114 &3534574690155855617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904736104710118793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829a9f372be229e4fa58e14cbff9b7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 8904736104710118795}
+  elapsed: 0
 --- !u!1 &8904736104758915709
 GameObject:
   m_ObjectHideFlags: 0

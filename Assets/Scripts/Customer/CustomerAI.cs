@@ -248,4 +248,9 @@ public class CustomerAI : MonoBehaviour {
             customer_state = STATE.DESTROY;
         }
     }
+
+	public void TimeUp() {
+		this.customer_state = STATE.LEAVING;
+		this.is_ready_for_order = false;
+	}
 }
