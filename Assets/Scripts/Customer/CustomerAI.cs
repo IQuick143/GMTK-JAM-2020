@@ -40,7 +40,7 @@ public class CustomerAI : MonoBehaviour {
 	[SerializeField] private List<ItemType> orders = new List<ItemType>();
 	[SerializeField] private Transform indicator;
 	private GameObject foodModel;
-	private MeshRenderer[] modelMeshes;
+	private SkinnedMeshRenderer[] modelMeshes;
 
 	public void AteFoodOrder() {
 		was_fed = true;
@@ -50,11 +50,7 @@ public class CustomerAI : MonoBehaviour {
 	void Start() {
 		player_transform = GameObject.FindGameObjectWithTag("Player").transform;
 		rigidbody = GetComponent<Rigidbody>();
-
-		//TODO: Change the name of the model when we get the new customer model
-		modelMeshes = new MeshRenderer[] {
-			transform.Find("Model/Character").GetComponent<MeshRenderer>(),
-		};
+		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
 	}
 
 	// Update is called once per frame
@@ -100,18 +96,18 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 		}
-		Angrymeter();
-	}
+        Angrymeter();
+    }
 
-	private void Angrymeter()
-	{
-		float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
-		foreach (MeshRenderer renderer in modelMeshes)
-		{
-			renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
-		}
-		Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
-	}
+    private void Angrymeter()
+    {
+        float otherColor = 1f - Mathf.Min(1.0f, hunger / hunger_threshold) * 0.5f;
+        foreach (SkinnedMeshRenderer renderer in modelMeshes)
+        {
+            renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
+        }
+        Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
+    }
 
 	private IEnumerator Digesting() {
 		yield return new WaitForSeconds(waitAfterFood);
