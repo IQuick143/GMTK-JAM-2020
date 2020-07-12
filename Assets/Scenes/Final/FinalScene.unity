@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 59695698}
   - component: {fileID: 59695697}
+  - component: {fileID: 59695699}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -226,6 +227,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &59695699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59695696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829a9f372be229e4fa58e14cbff9b7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 4261534305207369841}
+  elapsed: 0
+  endTime: 480
+  Sun: {fileID: 59695697}
+  SunBrightness:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &82094697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,8 +1174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1001 &333796168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1861,8 +1902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!4 &562567046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1672996684602234926, guid: 9e453b6f31ed33a4e8b87aca1f4b98db,
@@ -2362,8 +2403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1 &940452667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,8 +2943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1 &1565919156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,8 +3312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1 &1725358094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,8 +3420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1001 &1806323012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3870,8 +3911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1 &1969353897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3978,8 +4019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1001 &1975974693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4166,8 +4207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797aa01a380a8c643bc4416696145588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0.25
-  tileY: 0.25
+  tileX: 1
+  tileY: 1
 --- !u!1001 &4261534305207369840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4297,6 +4338,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99feb17f0ba72914b896cb464fa7072b, type: 3}
+--- !u!114 &4261534305207369841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904736104710118795, guid: 99feb17f0ba72914b896cb464fa7072b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4261534305207369840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7757111002785987384
 PrefabInstance:
   m_ObjectHideFlags: 0
