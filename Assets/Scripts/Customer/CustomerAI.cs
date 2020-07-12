@@ -44,7 +44,10 @@ public class CustomerAI : MonoBehaviour {
 
     // Audio stuff
     public AudioClip bumpSFX;
-    private AudioSource audioSource;
+    public AudioClip bellSFX;
+    public AudioClip orderCompleteSFX;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource walkAudioSource;
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
 
@@ -80,6 +83,7 @@ public class CustomerAI : MonoBehaviour {
 						currentOrder = orders[0];
 						orders.RemoveAt(0);
 						hunger = 0;
+                        audioSource.PlayOneShot(bellSFX);
 						customer_state = STATE.WAITING_FOOD;
 						if (foodModel != null) Destroy(foodModel);
 						foodModel = Instantiate(ItemManager.GetModel(currentOrder), indicator);
@@ -95,6 +99,7 @@ public class CustomerAI : MonoBehaviour {
 			case STATE.FED: {
 					this.customer_state = STATE.DIGESTING;
 					this.was_fed = false;
+                    audioSource.PlayOneShot(orderCompleteSFX);
 					StartCoroutine(Digesting());
 					break;
 				}
@@ -117,6 +122,17 @@ public class CustomerAI : MonoBehaviour {
             renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
         }
         Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
+
+        if (rigidbody.velocity.magnitude > 1.0f)
+        {
+
+            walkAudioSource.UnPause();
+        }
+        else
+        {
+            walkAudioSource.Pause();
+        }
+
     }
 
 	private IEnumerator Digesting() {
