@@ -103,7 +103,8 @@ public class CustomerAI : MonoBehaviour {
 			case STATE.FED: {
 					this.customer_state = STATE.DIGESTING;
                     audioSource.PlayOneShot(orderCompleteSFX);
-					StartCoroutine(Digesting());
+                    path = new NavMeshPath();
+                    StartCoroutine(Digesting());
 					break;
 				}
             case STATE.ANGRY:
@@ -155,8 +156,9 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	private void PathfindToDestination(Vector3 _goal,float _power) {
-		if (path == null || path.corners.Length == 0) {
-			goal = _goal;
+        goal = _goal;
+        if (path == null || path.corners.Length == 0) {
+
 
 			path = new NavMeshPath();
 			NavMesh.CalculatePath(transform.position, goal, NavMesh.AllAreas, path);
@@ -209,6 +211,7 @@ public class CustomerAI : MonoBehaviour {
 	}
 
 	private void Angry() {
+        path = new NavMeshPath();
 		rigidbody.drag = 0.0f;
 
 		Vector3 move_direction = (player_transform.position - rigidbody.transform.position).normalized;
@@ -247,5 +250,11 @@ public class CustomerAI : MonoBehaviour {
         {
             customer_state = STATE.DESTROY;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(goal, 0.5f);
+        Gizmos.DrawSphere(waypoint, 0.2f);
     }
 }
