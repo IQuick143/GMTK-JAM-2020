@@ -8,6 +8,7 @@ TagManager:
   - Burger
   - Fries
   - Table
+  - Exit
   layers:
   - Default
   - TransparentFX
