@@ -64,7 +64,6 @@ public class CustomerAI : MonoBehaviour {
 	private float goodOrderScore = 2000;
 
     public void AteFoodOrder() {
-		uiManager.Score += goodOrderScore;
 		was_fed = true;
 	}
 
@@ -74,6 +73,7 @@ public class CustomerAI : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody>();
 		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
         audioSource = GetComponent<AudioSource>();
+		uiManager = FindObjectOfType<UIManager>();
     }
 
 	// Update is called once per frame
@@ -250,6 +250,7 @@ public class CustomerAI : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		Item item = col.transform.GetComponent<Item>();
 		if (is_ready_for_order && item != null && item.type == this.currentOrder) {
+			uiManager.Score += goodOrderScore;
 			Destroy(col.gameObject);
 			this.was_fed = true;
 			Destroy(foodModel);
