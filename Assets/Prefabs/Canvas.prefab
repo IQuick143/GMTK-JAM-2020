@@ -320,6 +320,49 @@ MonoBehaviour:
   timer: {fileID: 8904736104710118795}
   elapsed: 0
   endTime: 480
+  Sun: {fileID: 0}
+  SunBrightness:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.99850464
+      inSlope: -0.008172296
+      outSlope: -0.008172296
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 6.9900475
+      value: 0.9413799
+      inSlope: -0.013512839
+      outSlope: -0.013512839
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07447348
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 8.798992
+      value: 0.2393316
+      inSlope: -0.23067303
+      outSlope: -0.23067303
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 12.000452
+      value: 0.004831744
+      inSlope: 0.0042902306
+      outSlope: 0.0042902306
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20242922
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8904736104758915709
 GameObject:
   m_ObjectHideFlags: 0

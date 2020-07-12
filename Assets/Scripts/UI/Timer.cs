@@ -11,6 +11,10 @@ public class Timer : MonoBehaviour
 	private float elapsed = 0f;
 	[SerializeField]
 	private float endTime = 480f;
+	[SerializeField]
+	private Light Sun;
+	[SerializeField]
+	private AnimationCurve SunBrightness;
     // Start is called before the first frame update
     void Start() {
         elapsed = 0f;
@@ -19,6 +23,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update() {
         elapsed += Time.deltaTime;
+		Sun.intensity = SunBrightness.Evaluate(elapsed / 60);
 		timer.text = GetTime(elapsed, 2, 0) + " PM\nClosing at: "+GetTime(endTime, 2, 0)+" PM";
 		if (elapsed >= endTime) {
 			TimeUp();
