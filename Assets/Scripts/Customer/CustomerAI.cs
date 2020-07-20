@@ -20,8 +20,6 @@ public class CustomerAI : MonoBehaviour {
         DESTROY
 	};
 
-    [SerializeField] private Animator anim;
-
 	[SerializeField] private STATE customer_state = STATE.ENTER;
 
 	private Transform player_transform;
@@ -60,6 +58,9 @@ public class CustomerAI : MonoBehaviour {
     float bounce_cooldown = 0.0f;
     [SerializeField] private float bounce_sound_interval;
 
+	private UIManager uiManager;
+	private float goodOrderScore = 2000;
+
     public void AteFoodOrder() {
 		was_fed = true;
 	}
@@ -70,6 +71,7 @@ public class CustomerAI : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody>();
 		modelMeshes = new SkinnedMeshRenderer[] { transform.Find("Model/Character").GetComponent<SkinnedMeshRenderer>()};
         audioSource = GetComponent<AudioSource>();
+		uiManager = FindObjectOfType<UIManager>();
     }
 
 	// Update is called once per frame
@@ -115,6 +117,7 @@ public class CustomerAI : MonoBehaviour {
 				}
             case STATE.ANGRY:
                 {
+                    path = new NavMeshPath();
                     Angry();
                     break;
                 }
@@ -247,6 +250,7 @@ public class CustomerAI : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		Item item = col.transform.GetComponent<Item>();
 		if (is_ready_for_order && item != null && item.type == this.currentOrder) {
+			uiManager.Score += goodOrderScore;
 			Destroy(col.gameObject);
 			this.was_fed = true;
 			Destroy(foodModel);

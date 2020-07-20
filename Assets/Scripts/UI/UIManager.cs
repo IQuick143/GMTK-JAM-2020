@@ -6,15 +6,19 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     public Text scoreText;
+    private float score = 0;
 
-    void Update()
+    public float Score
     {
-    }
-
-    private void SetTimeText()
-    {
-
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            scoreText.text = score.ToString() + " $";
+        }
     }
 }
