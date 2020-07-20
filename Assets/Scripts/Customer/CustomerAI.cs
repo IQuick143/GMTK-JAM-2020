@@ -158,12 +158,10 @@ public class CustomerAI : MonoBehaviour {
 		try {
 			if (rigidbody.velocity.magnitude > 1.0f)
 			{
-				anim.SetBool("fast", true);
 				walkAudioSource.UnPause();
 			}
 			else
 			{
-				anim.SetBool("fast", false);
 				walkAudioSource.Pause();
 			}
 		} catch(System.Exception) {}
