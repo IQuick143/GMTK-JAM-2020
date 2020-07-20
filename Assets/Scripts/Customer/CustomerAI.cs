@@ -152,17 +152,18 @@ public class CustomerAI : MonoBehaviour {
             renderer.material.color = new Color(1f, otherColor, otherColor, 1f);;
         }
         Debug.Log("Hunger: " + (hunger / hunger_threshold) * 0.5f);
-
-        if (rigidbody.velocity.magnitude > 1.0f)
-        {
-            anim.SetBool("fast", true);
-            walkAudioSource.UnPause();
-        }
-        else
-        {
-            anim.SetBool("fast", false);
-            walkAudioSource.Pause();
-        }
+		try {
+			if (rigidbody.velocity.magnitude > 1.0f)
+			{
+				anim.SetBool("fast", true);
+				walkAudioSource.UnPause();
+			}
+			else
+			{
+				anim.SetBool("fast", false);
+				walkAudioSource.Pause();
+			}
+		} catch(System.Exception) {}
 
     }
 

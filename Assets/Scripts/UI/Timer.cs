@@ -15,6 +15,8 @@ public class Timer : MonoBehaviour
 	private Light Sun;
 	[SerializeField]
 	private AnimationCurve SunBrightness;
+	[SerializeField]
+	private GameObject endgamescreen;
     // Start is called before the first frame update
     void Start() {
         elapsed = 0f;
@@ -27,6 +29,7 @@ public class Timer : MonoBehaviour
 		timer.text = GetTime(elapsed, 2, 0) + " PM\nClosing at: "+GetTime(endTime, 2, 0)+" PM";
 		if (elapsed >= endTime) {
 			TimeUp();
+			endgamescreen.SetActive(true);
 			Destroy(this);
 		}
     }

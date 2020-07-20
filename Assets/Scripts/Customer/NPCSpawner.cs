@@ -27,7 +27,7 @@ public class NPCSpawner : MonoBehaviour
                 is_first = false;
                 current_time = 0.0f;
                 var cust = Instantiate(customer, transform.position, new Quaternion()).GetComponent<CustomerAI>();
-				cust.orders = new List<ItemType>() {ItemType.Steak, ItemType.Steak, ItemType.Steak, ItemType.Donut};
+				cust.orders = new List<ItemType>() {ItemType.Steak, ItemType.Steak, ItemType.Steak, ItemType.Fries};
             }
         }
         else
@@ -40,7 +40,7 @@ public class NPCSpawner : MonoBehaviour
 					cust.orders = new List<ItemType>() {};
 					for (int i = 0; i < Random.Range(2, 5); i++) {
 						cust.orders.Add(
-							new ItemType[] {ItemType.Steak, ItemType.Donut, ItemType.Burger}[Random.Range(0, 3)]
+							new ItemType[] {ItemType.Steak, ItemType.Donut, ItemType.Fries, ItemType.Burger}[Random.Range(0, 4)]
 						);
 					}
 				}
