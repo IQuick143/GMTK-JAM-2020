@@ -28,6 +28,8 @@ public class CustomerAI : MonoBehaviour {
 	private NavMeshPath path;
 
     private bool is_dest_inited = false;
+	private Transform chosen_table;
+	private bool is_at_table = false;
 
 	private Vector3 goal;
 	private Vector3 waypoint;
@@ -87,7 +89,18 @@ public class CustomerAI : MonoBehaviour {
 					break;
 				}
 			case STATE.FIND_SEAT: {
-					FindSeat();
+					if (chosen_table == null) {
+						// Search for table
+						GameObject[] table = GameObject.FindGameObjectsWithTag("Table");
+
+						int selected_table = UnityEngine.Random.Range(0, table.Length);
+						is_dest_inited = true;
+
+						chosen_table = table[selected_table].transform;
+						goal = chosen_table.position;
+					}
+					PathfindToDestination(goal, 6.0f);
+					if (is_at_table) customer_state = STATE.WAIT_FOR_FOOD;
 					break;
 				}
 			case STATE.WAIT_FOR_FOOD: {
@@ -204,24 +217,6 @@ public class CustomerAI : MonoBehaviour {
         is_dest_inited = false;
 	}
 
-	private void FindSeat() {
-        if (!is_dest_inited)
-        {
-    		// Search for table
-	    	GameObject[] table = GameObject.FindGameObjectsWithTag("Table");
-
-            int selected_table = UnityEngine.Random.Range(0, table.Length);
-            is_dest_inited = true;
-
-            goal = table[selected_table].transform.position;
-        }
-        PathfindToDestination(goal, 6.0f);
-
-        if (Vector3.Distance(transform.position,goal) < 3.0f) {
-			customer_state = STATE.WAIT_FOR_FOOD;
-		}
-	}
-
 	private void WaitForFood() {
 		was_fed = false;
 		is_ready_for_order = true;
@@ -265,6 +260,18 @@ public class CustomerAI : MonoBehaviour {
             bounce_cooldown = bounce_sound_interval;
         }
     }
+
+	void OnTriggerEnter(Collider other) {
+		if (other.transform == this.chosen_table) {
+			is_at_table = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if (other.transform == this.chosen_table) {
+			is_at_table = false;
+		}
+	}
 
     private void Leaving()
     {
